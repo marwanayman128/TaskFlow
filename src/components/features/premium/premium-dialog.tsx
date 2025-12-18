@@ -145,7 +145,8 @@ export function PremiumDialog({ open, onOpenChange }: PremiumDialogProps) {
 
   return (
     <Dialog  open={open} onOpenChange={onOpenChange}>
-      <DialogContent showCloseButton={false} className="max-w-[1300px] p-0 overflow-hidden  border-0 shadow-2xl" style={{maxWidth: '850px'}}>
+      <DialogContent showCloseButton={false}   className="max-w-[1300px] p-0 border-2 border-primary overflow-hidden shadow-2xl"
+ style={{maxWidth: '850px'}}>
         <VisuallyHidden>
           <DialogTitle>Upgrade to Premium</DialogTitle>
         </VisuallyHidden>
@@ -174,47 +175,72 @@ export function PremiumDialog({ open, onOpenChange }: PremiumDialogProps) {
             {/* Left Column - Features */}
             <div className="flex-1">
               {/* Features Card */}
-              <div className="rounded-2xl border border-gray-700/50  p-6">
-                <p className="text-xs uppercase tracking-wider text-gray-400 mb-6">Includes</p>
-                
-                <div className="grid grid-cols-3 gap-6">
-                  {FEATURES.map((feature, index) => (
-                    <motion.div
-                      key={feature.title}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="flex flex-col items-center text-center"
-                    >
-                      <div className="size-12 rounded-full bg-primary flex items-center justify-center text-white mb-3">
-                        {feature.icon}
-                      </div>
-                      <p className="text-sm text-white font-medium leading-tight">
-                        {feature.title}
-                      </p>
-                      <p className="text-xs text-gray-400">{feature.subtitle}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+             <div className="relative rounded-2xl border border-gray-700/50 p-6 pt-10">
+  
+  {/* Floating Header */}
+  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 
+                  bg-background text-xs uppercase tracking-wider 
+                  text-gray-400">
+    Includes
+  </div>
 
-              {/* Review Section */}
-              <div className="mt-6">
-                <div className="flex gap-1 mb-3">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Icon key={star} icon="solar:star-bold" className="size-4 text-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-400 italic mb-4">
-                  "Any.do's reminders jog my memory. It helped endlessly with keeping me on top of my tasks and has made me FAR more productive."
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="size-10 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-sm font-semibold">
-                    CD
-                  </div>
-                  <span className="text-sm text-gray-400">Claire Dolan, Fairfax County, Virginia.</span>
-                </div>
-              </div>
+  {/* Content */}
+  <div className="grid grid-cols-3 gap-6">
+    {FEATURES.map((feature, index) => (
+      <motion.div
+        key={feature.title}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.05 }}
+        className="flex flex-col items-center text-center"
+      >
+        <div className="size-12 rounded-full bg-primary flex items-center justify-center text-white mb-3">
+          {feature.icon}
+        </div>
+        <p className="text-sm text-white font-medium leading-tight">
+          {feature.title}
+        </p>
+        <p className="text-xs text-gray-400">{feature.subtitle}</p>
+      </motion.div>
+    ))}
+  </div>
+</div>
+
+
+             {/* Review Section */}
+<div className="mt-6 flex flex-col items-center text-center max-w-xs mx-auto">
+  
+  {/* Stars */}
+  <div className="flex gap-0.5 mb-2">
+    {[1, 2, 3, 4, 5].map((star) => (
+      <Icon
+        key={star}
+        icon="solar:star-bold"
+        className="size-3 text-yellow-500"
+      />
+    ))}
+  </div>
+
+  {/* Quote */}
+  <p className="text-xs text-gray-400 italic leading-relaxed mb-3">
+    “Any.do's reminders jog my memory. It helped endlessly with keeping me on top
+    of my tasks and has made me far more productive.”
+  </p>
+
+  {/* Author */}
+  <div className="flex items-center gap-2">
+    <div className="size-8 rounded-full bg-gradient-to-br 
+                    from-amber-500 to-orange-600 
+                    flex items-center justify-center 
+                    text-white text-xs font-semibold">
+      CD
+    </div>
+    <span className="text-[11px] text-gray-400">
+      Claire Dolan · Fairfax County, VA
+    </span>
+  </div>
+</div>
+
             </div>
 
             {/* Right Column - Plan Selection or Payment */}
@@ -279,6 +305,12 @@ export function PremiumDialog({ open, onOpenChange }: PremiumDialogProps) {
                     >
                       NO, THANKS
                     </button>
+                    {/* Footer */}
+          <div className="border-t border-gray-700/50 py-4 text-center">
+            <button className="text-gray-400 hover:text-white transition-colors">
+              Looking for team plans?
+            </button>
+          </div>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -469,19 +501,14 @@ export function PremiumDialog({ open, onOpenChange }: PremiumDialogProps) {
             </div>
           </div>
 
-          {/* Footer */}
-          <div className="border-t border-gray-700/50 py-4 text-center">
-            <button className="text-gray-400 hover:text-white transition-colors">
-              Looking for team plans?
-            </button>
-          </div>
+          
 
           {/* Terms */}
-          <div className="bg-[#14141f] py-4 px-8 text-center text-xs text-gray-500">
+          <div className="bg-primary py-4 px-8 text-center text-xs text-white">
             By subscribing to Any.do Premium, you agree to our auto-renewal subscription plan,{' '}
-            <a href="#" className="text-gray-400 hover:text-white">terms of service</a>
+            <a href="#" className="text-white underline hover:text-white">terms of service</a>
             {' '}and{' '}
-            <a href="#" className="text-gray-400 hover:text-white">privacy policy</a>.
+            <a href="#" className="text-white underline hover:text-white">privacy policy</a>.
           </div>
         </div>
       </DialogContent>

@@ -15,7 +15,11 @@ import {
   Loader2,
   ChevronDown,
   CheckCircle2,
+  Clock,
 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { DynamicAnimation } from '@/components/ui/dynamic-animation';
 import { useTodayTasks, useCreateTask, useUpdateTaskMutation, useDeleteTaskMutation, useTags, Task } from '@/hooks/use-tasks';
 import { TaskCard } from '@/components/features/tasks/task-card';
 import { TaskDetailDialog } from '@/components/features/tasks/task-detail-dialog';
@@ -75,6 +79,8 @@ function CalendarWidget() {
 export default function MyDayPage() {
   const { data: session } = useSession();
   const t = useTranslations('dashboard');
+  const locale = useLocale();
+  const isArabic = locale.startsWith('ar');
   
   // Fetch today's tasks from API
   const { tasks: apiTasks, isLoading, mutate } = useTodayTasks();
@@ -224,14 +230,68 @@ export default function MyDayPage() {
       {/* Header */}
       <div className="flex-none p-8 pb-4">
         <div className="w-full space-y-8">
-          {/* Greeting Section */}
-          <div className="space-y-1">
-            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center gap-2">
-              {getTimeIcon(hour)}
-              {getTimeGreeting()}, {userName}
-            </h1>
-            <p className="text-muted-foreground italic">"{quote}"</p>
-          </div>
+          {/* Greeting Section (New Design) */}
+          <section className="relative z-10 space-y-6">
+            <div className="relative rounded-3xl border bg-gradient-to-br from-primary/10 via-background to-primary/10 p-6 shadow-sm overflow-hidden">
+              {/* Animation bottom right absolute */}
+              <div
+                className={cn(
+                  'hidden md:block w-64 absolute top-1/2 -translate-y-1/2 pointer-events-none',
+                  isArabic ? 'left-6' : 'right-6'
+                )}
+              >
+                <DynamicAnimation animationUrl="/animations/woman-sitting-with-calendar-illustration-2025-10-20-23-53-12-utc.json" />
+              </div>
+
+              <div className="flex flex-wrap gap-6 relative z-10">
+                <div className="flex min-w-60 flex-1 flex-col gap-3">
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    {t('overview')}
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-3xl font-bold tracking-tight">
+                      {getTimeGreeting()}
+                    </h2>
+                    <Badge
+                      variant="outline"
+                      className="rounded-full bg-primary/10 text-primary border-primary/20 font-mono"
+                      suppressHydrationWarning
+                    >
+                      {currentTime.toLocaleTimeString(locale, {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </Badge>
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium">Welcome back, {userName}!</p>
+                    <p className="text-xs text-muted-foreground italic">"{quote}"</p>
+                  </div>
+
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {new Date().toLocaleString(locale, {
+                      weekday: 'long',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <Button variant="outline" size="sm" className="rounded-full h-8 bg-background/50 backdrop-blur-sm">
+                      <Clock className="mr-2 h-3.5 w-3.5" />
+                      {t('quickRanges.today')}
+                    </Button>
+                    <Button variant="ghost" size="sm" className="rounded-full h-8">
+                      {t('quickRanges.week')}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Main Input Area */}
