@@ -1,0 +1,1 @@
+export default function authPage() { return ( <div className="container mx-auto py-6"> <h1 className="text-3xl font-bold">auth</h1> <p className="text-muted-foreground">auth management coming soon...</p> </div> ); } 

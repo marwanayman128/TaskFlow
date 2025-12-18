@@ -1,0 +1,127 @@
+{
+  "title": "Settings",
+  "subtitle": "Manage your application settings",
+  "tabs": {
+    "general": "General",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "security": "Security",
+    "api": "API Keys"
+  },
+  "general": {
+    "title": "General Settings",
+    "description": "Configure basic application settings",
+    "appName": {
+      "label": "Application Name",
+      "placeholder": "My Dashboard"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "A brief description of your application"
+    },
+    "timezone": {
+      "label": "Timezone",
+      "placeholder": "Select timezone"
+    },
+    "language": {
+      "label": "Language",
+      "placeholder": "Select language"
+    },
+    "currency": {
+      "label": "Currency",
+      "placeholder": "Select currency"
+    },
+    "dateFormat": {
+      "label": "Date Format",
+      "placeholder": "Select date format"
+    }
+  },
+  "appearance": {
+    "title": "Appearance",
+    "description": "Customize the look and feel",
+    "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "colorPalette": {
+      "label": "Color Palette",
+      "description": "Choose your preferred color scheme"
+    },
+    "fontSize": {
+      "label": "Font Size",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    },
+    "compactMode": {
+      "label": "Compact Mode",
+      "description": "Use a more compact layout"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Configure how you receive notifications",
+    "email": {
+      "label": "Email Notifications",
+      "description": "Receive notifications via email"
+    },
+    "push": {
+      "label": "Push Notifications",
+      "description": "Receive push notifications in browser"
+    },
+    "inApp": {
+      "label": "In-App Notifications",
+      "description": "Show notifications inside the app"
+    },
+    "digest": {
+      "label": "Daily Digest",
+      "description": "Receive a daily summary of activities"
+    }
+  },
+  "security": {
+    "title": "Security",
+    "description": "Manage security settings",
+    "changePassword": {
+      "label": "Change Password",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "button": "Update Password"
+    },
+    "twoFactor": {
+      "label": "Two-Factor Authentication",
+      "description": "Add an extra layer of security",
+      "enable": "Enable 2FA",
+      "disable": "Disable 2FA"
+    },
+    "sessions": {
+      "label": "Active Sessions",
+      "description": "Manage your active sessions",
+      "current": "Current Session",
+      "signOutAll": "Sign out all other sessions"
+    }
+  },
+  "api": {
+    "title": "API Keys",
+    "description": "Manage your API keys",
+    "create": "Create API Key",
+    "revoke": "Revoke",
+    "copy": "Copy",
+    "name": "Name",
+    "key": "API Key",
+    "createdAt": "Created",
+    "lastUsed": "Last Used",
+    "never": "Never",
+    "empty": {
+      "title": "No API keys",
+      "description": "Create an API key to integrate with external services."
+    }
+  },
+  "messages": {
+    "saved": "Settings saved successfully",
+    "error": "Error saving settings",
+    "passwordChanged": "Password changed successfully"
+  }
+}

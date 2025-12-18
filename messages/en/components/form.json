@@ -1,0 +1,50 @@
+{
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minLength": "Must be at least {min} characters",
+    "maxLength": "Must be no more than {max} characters",
+    "min": "Must be at least {min}",
+    "max": "Must be no more than {max}",
+    "pattern": "Invalid format",
+    "passwordMatch": "Passwords do not match",
+    "passwordStrength": {
+      "weak": "Password is too weak",
+      "fair": "Password is fair",
+      "good": "Password is good",
+      "strong": "Password is strong"
+    },
+    "phone": "Please enter a valid phone number",
+    "url": "Please enter a valid URL",
+    "date": "Please enter a valid date",
+    "number": "Please enter a valid number",
+    "integer": "Please enter a whole number",
+    "positive": "Must be a positive number",
+    "unique": "This value already exists"
+  },
+  "placeholders": {
+    "select": "Select an option",
+    "search": "Search...",
+    "date": "Select a date",
+    "time": "Select a time",
+    "email": "email@example.com",
+    "phone": "+1 (555) 000-0000"
+  },
+  "hints": {
+    "optional": "(optional)",
+    "required": "*"
+  },
+  "file": {
+    "upload": "Upload file",
+    "dragDrop": "Drag and drop or click to upload",
+    "maxSize": "Max file size: {size}",
+    "allowedTypes": "Allowed types: {types}",
+    "remove": "Remove file"
+  },
+  "date": {
+    "today": "Today",
+    "clear": "Clear",
+    "selectDate": "Select date",
+    "selectTime": "Select time"
+  }
+}

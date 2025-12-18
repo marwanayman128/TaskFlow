@@ -1,0 +1,44 @@
+{
+  "title": "Notifications",
+  "allNotifications": "All Notifications",
+  "unread": "Unread",
+  "read": "Read",
+  "settings": "Notification Settings",
+  "noNotifications": "No notifications",
+  "markAllRead": "Mark all as read",
+  "markAsRead": "Mark as read",
+  "markAsUnread": "Mark as unread",
+  "viewAll": "View all notifications",
+  "clearAll": "Clear all",
+  "types": {
+    "systemAlert": "System Alert",
+    "newNotification": "New Notification",
+    "error": "Error",
+    "warning": "Warning",
+    "success": "Success",
+    "info": "Info"
+  },
+  "messages": {
+    "systemAlert": "System Alert",
+    "databaseConnectionFailed": "Database connection failed. Please check your settings.",
+    "maintenanceNotice": "Maintenance Notice",
+    "maintenanceBeginSoon": "Scheduled maintenance will begin soon.",
+    "backupCompleted": "Backup Completed",
+    "dailyBackupCompleted": "Daily backup completed successfully.",
+    "newFeature": "New Feature",
+    "checkAnalyticsFeature": "Check out the new analytics dashboard feature!",
+    "storageWarning": "Storage Warning",
+    "storageUsageWarning": "Storage usage is above 80%. Consider cleanup.",
+    "userCreated": "New user has been created.",
+    "userUpdated": "User information has been updated.",
+    "settingsUpdated": "Settings have been updated.",
+    "passwordChanged": "Your password has been changed."
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{count} minutes ago",
+    "hoursAgo": "{count} hours ago",
+    "yesterday": "Yesterday",
+    "daysAgo": "{count} days ago"
+  }
+}

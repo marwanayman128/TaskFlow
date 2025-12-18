@@ -1,0 +1,41 @@
+{
+  "title": "إنشاء حساب",
+  "subtitle": "ابدأ الآن",
+  "description": "أنشئ حسابك للبدء",
+  "fullName": {
+    "label": "الاسم الكامل",
+    "placeholder": "محمد أحمد"
+  },
+  "email": {
+    "label": "البريد الإلكتروني",
+    "placeholder": "mohamed@example.com"
+  },
+  "password": {
+    "label": "كلمة المرور",
+    "placeholder": "أنشئ كلمة مرور"
+  },
+  "confirmPassword": {
+    "label": "تأكيد كلمة المرور",
+    "placeholder": "أكد كلمة المرور"
+  },
+  "terms": {
+    "agree": "أوافق على",
+    "termsOfService": "شروط الخدمة",
+    "and": "و",
+    "privacyPolicy": "سياسة الخصوصية"
+  },
+  "signUpButton": "إنشاء حساب",
+  "signingUp": "جاري إنشاء الحساب...",
+  "hasAccount": "لديك حساب بالفعل؟",
+  "signIn": "تسجيل الدخول",
+  "errors": {
+    "emailExists": "البريد الإلكتروني موجود مسبقاً",
+    "weakPassword": "كلمة المرور ضعيفة جداً",
+    "passwordMismatch": "كلمات المرور غير متطابقة",
+    "invalidEmail": "البريد الإلكتروني غير صالح"
+  },
+  "success": {
+    "accountCreated": "تم إنشاء الحساب بنجاح",
+    "verificationSent": "تم إرسال بريد التحقق"
+  }
+}

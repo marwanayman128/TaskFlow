@@ -1,0 +1,35 @@
+{
+  "groups": {
+    "myLists": "My lists",
+    "tags": "Tags",
+    "boards": "Boards",
+    "sharedSpaces": "Shared Spaces",
+    "system": "System"
+  },
+  "items": {
+    "myday": {
+      "title": "My Day",
+      "description": "Today's focus"
+    },
+    "next7days": {
+      "title": "Next 7 days",
+      "description": "Upcoming week"
+    },
+    "allTasks": {
+      "title": "All my tasks",
+      "description": "Complete task list"
+    },
+    "calendar": {
+      "title": "My Calendar",
+      "description": "Calendar view"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "App settings",
+      "profile": "My Profile",
+      "preferences": "Preferences",
+      "integrations": "Integrations",
+      "import": "Import"
+    }
+  }
+}

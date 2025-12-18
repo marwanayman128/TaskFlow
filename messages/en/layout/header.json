@@ -1,0 +1,61 @@
+{
+  "search": {
+    "placeholder": "Search...",
+    "noResults": "No results found",
+    "recentSearches": "Recent Searches",
+    "clearHistory": "Clear History",
+    "searchIn": "Search in",
+    "pages": "Pages",
+    "users": "Users",
+    "settings": "Settings",
+    "hint": "Press ⌘K to search"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "viewAll": "View all",
+    "markAllRead": "Mark all as read",
+    "empty": "No notifications",
+    "settings": "Notification settings"
+  },
+  "overview": "Account",
+  "userMenu": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "billing": "Billing",
+    "help": "Help & Support",
+    "logout": "Sign out",
+    "signOut": "Sign out",
+    "theme": "Theme",
+    "language": "Language",
+    "palette": "Color Palette",
+    "unknownUser": "User",
+    "palettes": {
+      "default": "Default",
+      "terracotta": "Terracotta",
+      "botanical": "Botanical",
+      "ocean": "Ocean",
+      "spotify": "Spotify",
+      "sunset": "Sunset",
+      "twitter": "Twitter",
+      "discord": "Discord",
+      "ember": "Ember",
+      "slack": "Slack",
+      "zinc": "Zinc",
+      "slate": "Slate",
+      "stone": "Stone",
+      "gray": "Gray",
+      "neutral": "Neutral",
+      "red": "Red",
+      "rose": "Rose",
+      "orange": "Orange",
+      "green": "Green",
+      "blue": "Blue",
+      "yellow": "Yellow",
+      "violet": "Violet"
+    }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  }
+}

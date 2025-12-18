@@ -1,0 +1,47 @@
+{
+  "title": "الملف الشخصي",
+  "subtitle": "إدارة معلوماتك الشخصية",
+  "editProfile": "تعديل الملف الشخصي",
+  "saveChanges": "حفظ التغييرات",
+  "sections": {
+    "personalInfo": "المعلومات الشخصية",
+    "contactInfo": "معلومات الاتصال",
+    "preferences": "التفضيلات",
+    "security": "الأمان"
+  },
+  "fields": {
+    "avatar": {
+      "label": "الصورة الشخصية",
+      "change": "تغيير الصورة",
+      "remove": "إزالة الصورة"
+    },
+    "fullName": {
+      "label": "الاسم الكامل",
+      "placeholder": "أدخل اسمك الكامل"
+    },
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "أدخل بريدك الإلكتروني"
+    },
+    "phone": {
+      "label": "رقم الهاتف",
+      "placeholder": "أدخل رقم هاتفك"
+    },
+    "language": {
+      "label": "اللغة المفضلة"
+    },
+    "timezone": {
+      "label": "المنطقة الزمنية"
+    },
+    "bio": {
+      "label": "نبذة",
+      "placeholder": "اكتب نبذة قصيرة عن نفسك"
+    }
+  },
+  "messages": {
+    "updated": "تم تحديث الملف الشخصي بنجاح",
+    "avatarUpdated": "تم تحديث الصورة الشخصية",
+    "avatarRemoved": "تم إزالة الصورة الشخصية",
+    "error": "خطأ في تحديث الملف الشخصي"
+  }
+}

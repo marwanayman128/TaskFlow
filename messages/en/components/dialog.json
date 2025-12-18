@@ -1,0 +1,46 @@
+{
+  "confirm": {
+    "title": "Confirm Action",
+    "description": "Are you sure you want to proceed?",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "delete": {
+    "title": "Delete Item",
+    "description": "Are you sure you want to delete this item?",
+    "warning": "This action cannot be undone.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "unsavedChanges": {
+    "title": "Unsaved Changes",
+    "description": "You have unsaved changes. Are you sure you want to leave?",
+    "leave": "Leave",
+    "stay": "Stay"
+  },
+  "export": {
+    "title": "Export Data",
+    "description": "Choose your export format",
+    "formats": {
+      "csv": "CSV",
+      "excel": "Excel",
+      "pdf": "PDF",
+      "json": "JSON"
+    },
+    "options": {
+      "allData": "All data",
+      "selectedOnly": "Selected only",
+      "currentPage": "Current page"
+    },
+    "export": "Export",
+    "cancel": "Cancel"
+  },
+  "import": {
+    "title": "Import Data",
+    "description": "Upload a file to import data",
+    "dropzone": "Drop your file here or click to browse",
+    "formats": "Supported formats: CSV, Excel, JSON",
+    "import": "Import",
+    "cancel": "Cancel"
+  }
+}

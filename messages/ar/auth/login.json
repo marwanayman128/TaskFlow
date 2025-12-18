@@ -1,0 +1,30 @@
+{
+  "title": "تسجيل الدخول",
+  "subtitle": "مرحباً بعودتك",
+  "description": "أدخل بيانات الاعتماد للوصول إلى حسابك",
+  "email": {
+    "label": "البريد الإلكتروني",
+    "placeholder": "admin@example.com"
+  },
+  "password": {
+    "label": "كلمة المرور",
+    "placeholder": "أدخل كلمة المرور",
+    "show": "إظهار كلمة المرور",
+    "hide": "إخفاء كلمة المرور"
+  },
+  "rememberMe": "تذكرني",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "signInButton": "تسجيل الدخول",
+  "signingIn": "جاري تسجيل الدخول...",
+  "noAccount": "ليس لديك حساب؟",
+  "signUp": "إنشاء حساب",
+  "orContinueWith": "أو المتابعة مع",
+  "errors": {
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "accountLocked": "الحساب مقفل. يرجى التواصل مع الدعم.",
+    "accountDisabled": "الحساب معطل.",
+    "tooManyAttempts": "محاولات كثيرة جداً. يرجى المحاولة لاحقاً.",
+    "networkError": "خطأ في الشبكة. يرجى التحقق من الاتصال.",
+    "serverError": "خطأ في الخادم. يرجى المحاولة لاحقاً."
+  }
+}

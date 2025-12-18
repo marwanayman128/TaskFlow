@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Search...",
+    "clear": "Clear search"
+  },
+  "pagination": {
+    "showing": "Showing",
+    "of": "of",
+    "to": "to",
+    "entries": "entries",
+    "page": "Page",
+    "rowsPerPage": "Rows per page",
+    "first": "First",
+    "last": "Last",
+    "next": "Next",
+    "previous": "Previous",
+    "goToPage": "Go to page"
+  },
+  "selection": {
+    "selected": "selected",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "selectRow": "Select row"
+  },
+  "sorting": {
+    "sortAsc": "Sort ascending",
+    "sortDesc": "Sort descending",
+    "clearSort": "Clear sort"
+  },
+  "filters": {
+    "filter": "Filter",
+    "clearFilters": "Clear filters",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "columns": {
+    "show": "Show columns",
+    "hide": "Hide column",
+    "reset": "Reset columns"
+  },
+  "empty": {
+    "title": "No results found",
+    "description": "Try adjusting your search or filter to find what you're looking for."
+  },
+  "loading": "Loading...",
+  "error": "Error loading data",
+  "noData": "No data available"
+}

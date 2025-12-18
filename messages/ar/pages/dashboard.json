@@ -1,0 +1,49 @@
+{
+  "title": "لوحة التحكم",
+  "welcome": "مرحباً بك في لوحة التحكم",
+  "welcomeMessage": "مرحباً بعودتك، {name}!",
+  "overview": "نظرة عامة",
+  "quickActions": "إجراءات سريعة",
+  "recentActivity": "النشاط الأخير",
+  "statistics": "الإحصائيات",
+  "lastUpdated": "آخر تحديث",
+  "viewAll": "عرض الكل",
+  "noRecentActivity": "لا يوجد نشاط حديث",
+  "greeting": {
+    "morning": "صباح الخير",
+    "afternoon": "مساء الخير",
+    "evening": "مساء الخير"
+  },
+  "stats": {
+    "users": "المستخدمون",
+    "sessions": "الجلسات",
+    "pageViews": "مشاهدات الصفحة",
+    "bounceRate": "معدل الارتداد",
+    "revenue": "الإيرادات",
+    "growth": "النمو",
+    "performance": "الأداء",
+    "activeUsers": "المستخدمون النشطون",
+    "newUsers": "المستخدمون الجدد",
+    "totalUsers": "إجمالي المستخدمين"
+  },
+  "gettingStarted": {
+    "title": "البدء",
+    "description": "مرحباً بك في لوحة التحكم الجديدة! إليك بعض الإجراءات السريعة للبدء.",
+    "customizeTheme": "تخصيص المظهر",
+    "addUsers": "إضافة مستخدمين",
+    "configureSettings": "تكوين الإعدادات",
+    "viewDocs": "عرض التوثيق"
+  },
+  "quickRanges": {
+    "today": "اليوم",
+    "week": "هذا الأسبوع",
+    "month": "هذا الشهر",
+    "year": "هذا العام"
+  },
+  "charts": {
+    "usersOverTime": "المستخدمون عبر الوقت",
+    "revenueChart": "الإيرادات",
+    "activityChart": "النشاط",
+    "trafficSources": "مصادر الزيارات"
+  }
+}

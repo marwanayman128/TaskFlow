@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "بحث...",
+    "clear": "مسح البحث"
+  },
+  "pagination": {
+    "showing": "عرض",
+    "of": "من",
+    "to": "إلى",
+    "entries": "عناصر",
+    "page": "صفحة",
+    "rowsPerPage": "صفوف في الصفحة",
+    "first": "الأولى",
+    "last": "الأخيرة",
+    "next": "التالي",
+    "previous": "السابق",
+    "goToPage": "انتقل إلى صفحة"
+  },
+  "selection": {
+    "selected": "محدد",
+    "selectAll": "تحديد الكل",
+    "deselectAll": "إلغاء تحديد الكل",
+    "selectRow": "تحديد الصف"
+  },
+  "sorting": {
+    "sortAsc": "ترتيب تصاعدي",
+    "sortDesc": "ترتيب تنازلي",
+    "clearSort": "إلغاء الترتيب"
+  },
+  "filters": {
+    "filter": "تصفية",
+    "clearFilters": "مسح التصفية",
+    "apply": "تطبيق",
+    "reset": "إعادة تعيين"
+  },
+  "columns": {
+    "show": "إظهار الأعمدة",
+    "hide": "إخفاء العمود",
+    "reset": "إعادة تعيين الأعمدة"
+  },
+  "empty": {
+    "title": "لا توجد نتائج",
+    "description": "حاول تعديل البحث أو التصفية للعثور على ما تبحث عنه."
+  },
+  "loading": "جاري التحميل...",
+  "error": "خطأ في تحميل البيانات",
+  "noData": "لا توجد بيانات"
+}

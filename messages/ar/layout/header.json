@@ -1,0 +1,61 @@
+{
+  "search": {
+    "placeholder": "بحث...",
+    "noResults": "لا توجد نتائج",
+    "recentSearches": "عمليات البحث الأخيرة",
+    "clearHistory": "مسح السجل",
+    "searchIn": "البحث في",
+    "pages": "الصفحات",
+    "users": "المستخدمون",
+    "settings": "الإعدادات",
+    "hint": "اضغط ⌘K للبحث"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "viewAll": "عرض الكل",
+    "markAllRead": "تحديد الكل كمقروء",
+    "empty": "لا توجد إشعارات",
+    "settings": "إعدادات الإشعارات"
+  },
+  "overview": "الحساب",
+  "userMenu": {
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "billing": "الفوترة",
+    "help": "المساعدة والدعم",
+    "logout": "تسجيل الخروج",
+    "signOut": "تسجيل الخروج",
+    "theme": "المظهر",
+    "language": "اللغة",
+    "palette": "لوحة الألوان",
+    "unknownUser": "مستخدم",
+    "palettes": {
+      "default": "افتراضي",
+      "terracotta": "تيراكوتا",
+      "botanical": "نباتي",
+      "ocean": "محيط",
+      "spotify": "سبوتيفاي",
+      "sunset": "غروب",
+      "twitter": "تويتر",
+      "discord": "ديسكورد",
+      "ember": "جمر",
+      "slack": "سلاك",
+      "zinc": "زنك",
+      "slate": "رمادي داكن",
+      "stone": "حجري",
+      "gray": "رمادي",
+      "neutral": "محايد",
+      "red": "أحمر",
+      "rose": "وردي",
+      "orange": "برتقالي",
+      "green": "أخضر",
+      "blue": "أزرق",
+      "yellow": "أصفر",
+      "violet": "بنفسجي"
+    }
+  },
+  "breadcrumb": {
+    "home": "الرئيسية",
+    "dashboard": "لوحة التحكم"
+  }
+}

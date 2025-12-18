@@ -1,0 +1,35 @@
+{
+  "groups": {
+    "myLists": "قوائمي",
+    "tags": "العلامات",
+    "boards": "اللوحات",
+    "sharedSpaces": "المساحات المشتركة",
+    "system": "النظام"
+  },
+  "items": {
+    "myday": {
+      "title": "يومي",
+      "description": "تركيز اليوم"
+    },
+    "next7days": {
+      "title": "الأيام السبعة القادمة",
+      "description": "الأسبوع القادم"
+    },
+    "allTasks": {
+      "title": "جميع مهامي",
+      "description": "قائمة المهام الكاملة"
+    },
+    "calendar": {
+      "title": "التقويم",
+      "description": "عرض التقويم"
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "description": "إعدادات التطبيق",
+      "profile": "ملفي الشخصي",
+      "preferences": "التفضيلات",
+      "integrations": "التكاملات",
+      "import": "استيراد"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "Dashboard",
+  "welcome": "Welcome to your dashboard",
+  "welcomeMessage": "Welcome back, {name}!",
+  "overview": "Overview",
+  "quickActions": "Quick Actions",
+  "recentActivity": "Recent Activity",
+  "statistics": "Statistics",
+  "lastUpdated": "Last updated",
+  "viewAll": "View All",
+  "noRecentActivity": "No recent activity",
+  "greeting": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening"
+  },
+  "stats": {
+    "users": "Users",
+    "sessions": "Sessions",
+    "pageViews": "Page Views",
+    "bounceRate": "Bounce Rate",
+    "revenue": "Revenue",
+    "growth": "Growth",
+    "performance": "Performance",
+    "activeUsers": "Active Users",
+    "newUsers": "New Users",
+    "totalUsers": "Total Users"
+  },
+  "gettingStarted": {
+    "title": "Getting Started",
+    "description": "Welcome to your new dashboard! Here are some quick actions to get you started.",
+    "customizeTheme": "Customize Theme",
+    "addUsers": "Add Users",
+    "configureSettings": "Configure Settings",
+    "viewDocs": "View Documentation"
+  },
+  "quickRanges": {
+    "today": "Today",
+    "week": "This Week",
+    "month": "This Month",
+    "year": "This Year"
+  },
+  "charts": {
+    "usersOverTime": "Users Over Time",
+    "revenueChart": "Revenue",
+    "activityChart": "Activity",
+    "trafficSources": "Traffic Sources"
+  }
+}

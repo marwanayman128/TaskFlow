@@ -1,0 +1,42 @@
+{
+  "appName": "Any.do Clone",
+  "collapse": "Collapse sidebar",
+  "expand": "Expand sidebar",
+  "menu": "Menu",
+  "navigation": "Navigation",
+  "freePlan": "Free Plan",
+  "premiumPlan": "Premium",
+  "goPremium": "Go Premium",
+  "tryFree": "Try It Free",
+  "greeting": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "night": "Good Night"
+  },
+  "addSharedSpace": "Add shared space",
+  "noBoards": "No boards yet",
+  "noLists": "No lists yet",
+  "noTags": "No tags yet",
+  "settings": {
+    "account": "Account",
+    "spaces": "Spaces",
+    "preferences": "Preferences",
+    "anydo": "Any.do"
+  },
+  "quickActions": {
+    "sync": "Sync",
+    "support": "Support",
+    "notifications": "Notifications",
+    "search": "Search"
+  },
+  "footer": {
+    "title": "Task Manager",
+    "beta": "Beta",
+    "description": "Organize anything with anyone, anywhere.",
+    "status": "All systems operational",
+    "version": "Version",
+    "help": "Help & Support",
+    "documentation": "Documentation"
+  }
+}

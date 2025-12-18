@@ -1,0 +1,44 @@
+{
+  "title": "الإشعارات",
+  "allNotifications": "جميع الإشعارات",
+  "unread": "غير مقروء",
+  "read": "مقروء",
+  "settings": "إعدادات الإشعارات",
+  "noNotifications": "لا توجد إشعارات",
+  "markAllRead": "تحديد الكل كمقروء",
+  "markAsRead": "تحديد كمقروء",
+  "markAsUnread": "تحديد كغير مقروء",
+  "viewAll": "عرض جميع الإشعارات",
+  "clearAll": "مسح الكل",
+  "types": {
+    "systemAlert": "تنبيه النظام",
+    "newNotification": "إشعار جديد",
+    "error": "خطأ",
+    "warning": "تحذير",
+    "success": "نجاح",
+    "info": "معلومات"
+  },
+  "messages": {
+    "systemAlert": "تنبيه النظام",
+    "databaseConnectionFailed": "فشل الاتصال بقاعدة البيانات. يرجى التحقق من الإعدادات.",
+    "maintenanceNotice": "إشعار صيانة",
+    "maintenanceBeginSoon": "ستبدأ الصيانة المجدولة قريباً.",
+    "backupCompleted": "اكتمل النسخ الاحتياطي",
+    "dailyBackupCompleted": "تم إكمال النسخ الاحتياطي اليومي بنجاح.",
+    "newFeature": "ميزة جديدة",
+    "checkAnalyticsFeature": "تحقق من ميزة لوحة التحليلات الجديدة!",
+    "storageWarning": "تحذير التخزين",
+    "storageUsageWarning": "استخدام التخزين أعلى من 80%. يرجى النظر في التنظيف.",
+    "userCreated": "تم إنشاء مستخدم جديد.",
+    "userUpdated": "تم تحديث معلومات المستخدم.",
+    "settingsUpdated": "تم تحديث الإعدادات.",
+    "passwordChanged": "تم تغيير كلمة المرور."
+  },
+  "time": {
+    "justNow": "الآن",
+    "minutesAgo": "منذ {count} دقائق",
+    "hoursAgo": "منذ {count} ساعات",
+    "yesterday": "أمس",
+    "daysAgo": "منذ {count} أيام"
+  }
+}

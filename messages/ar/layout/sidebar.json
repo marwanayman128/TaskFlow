@@ -1,0 +1,42 @@
+{
+  "appName": "مدير المهام",
+  "collapse": "طي الشريط الجانبي",
+  "expand": "توسيع الشريط الجانبي",
+  "menu": "القائمة",
+  "navigation": "التنقل",
+  "freePlan": "الخطة المجانية",
+  "premiumPlan": "مميز",
+  "goPremium": "الترقية للمميز",
+  "tryFree": "جربها مجاناً",
+  "greeting": {
+    "morning": "صباح الخير",
+    "afternoon": "مساء الخير",
+    "evening": "مساء الخير",
+    "night": "تصبح على خير"
+  },
+  "addSharedSpace": "إضافة مساحة مشتركة",
+  "noBoards": "لا توجد لوحات بعد",
+  "noLists": "لا توجد قوائم بعد",
+  "noTags": "لا توجد علامات بعد",
+  "settings": {
+    "account": "الحساب",
+    "spaces": "المساحات",
+    "preferences": "التفضيلات",
+    "anydo": "Any.do"
+  },
+  "quickActions": {
+    "sync": "مزامنة",
+    "support": "الدعم",
+    "notifications": "الإشعارات",
+    "search": "بحث"
+  },
+  "footer": {
+    "title": "مدير المهام",
+    "beta": "تجريبي",
+    "description": "نظم أي شيء مع أي شخص في أي مكان.",
+    "status": "جميع الأنظمة تعمل",
+    "version": "الإصدار",
+    "help": "المساعدة والدعم",
+    "documentation": "التوثيق"
+  }
+}

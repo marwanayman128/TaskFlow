@@ -1,0 +1,1118 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// CORE SYSTEM & MULTI-TENANCY
+// ============================================
+
+model Organization {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  name            String
+  description     String?
+  logo            String?
+  email           String?
+  phone           String?
+  address         String?
+  city            String?
+  country         String?
+  postalCode      String?
+  website         String?
+  taxNumber       String?
+  defaultCurrency String   @default("USD")
+  defaultLanguage String   @default("en")
+  timezone        String   @default("UTC")
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  users          User[]
+  userGroups     UserGroup[]
+  settings       SystemSettings?
+  auditLogs      AuditLog[]
+  
+  // Task Management Relations
+  tasks          Task[]
+  taskLists      TaskList[]
+  boards         Board[]
+  tags           Tag[]
+  customFields   CustomField[]
+  taskTemplates  TaskTemplate[]
+  spaces         Space[]
+
+  @@map("organizations")
+}
+
+model User {
+  id             String    @id @default(cuid())
+  organizationId String
+  username       String    @unique
+  email          String    @unique
+  password       String
+  fullName       String
+  avatar         String?
+  phone          String?
+  language       String    @default("en")
+  role           UserRole  @default(USER)
+  active         Boolean   @default(true)
+  emailVerified  DateTime?
+  lastLoginAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  organization  Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  groupMembers  UserGroupMember[]
+  auditLogs     AuditLog[]
+  
+  // Task Management Relations
+  createdTasks   Task[]          @relation("TaskCreator")
+  assignedTasks  Task[]          @relation("TaskAssignee")
+  createdLists   TaskList[]
+  createdBoards  Board[]
+  boardMembers   BoardMember[]
+
+  @@index([email])
+  @@index([organizationId])
+  @@map("users")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  MANAGER
+  USER
+}
+
+model UserGroup {
+  id             String   @id @default(cuid())
+  organizationId String
+  code           String
+  name           String
+  description    String?
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  members      UserGroupMember[]
+  permissions  GroupPermission[]
+  policies     GroupPolicy[]
+
+  @@unique([organizationId, code])
+  @@map("user_groups")
+}
+
+model UserGroupMember {
+  id        String   @id @default(cuid())
+  userId    String
+  groupId   String
+  createdAt DateTime @default(now())
+
+  // Relations
+  user  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  group UserGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, groupId])
+  @@map("user_group_members")
+}
+
+model GroupPermission {
+  id        String   @id @default(cuid())
+  groupId   String
+  module    String   // e.g., "users", "settings", "reports"
+  action    String   // e.g., "create", "read", "update", "delete"
+  allowed   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  group UserGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, module, action])
+  @@map("group_permissions")
+}
+
+model GroupPolicy {
+  id          String   @id @default(cuid())
+  groupId     String
+  name        String
+  description String?
+  policy      Json     // Flexible JSON policy definition
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  group UserGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@map("group_policies")
+}
+
+// ============================================
+// SYSTEM SETTINGS
+// ============================================
+
+model SystemSettings {
+  id                       String   @id @default(cuid())
+  organizationId           String   @unique
+  appName                  String   @default("Dashboard")
+  appDescription           String?
+  maintenanceMode          Boolean  @default(false)
+  allowRegistration        Boolean  @default(true)
+  requireEmailVerification Boolean  @default(false)
+  sessionTimeout           Int      @default(3600) // seconds
+  maxLoginAttempts         Int      @default(5)
+  lockoutDuration          Int      @default(900)  // seconds
+  customSettings           Json?    // Flexible JSON for app-specific settings
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  // Relations
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("system_settings")
+}
+
+// ============================================
+// AUDIT & LOGGING
+// ============================================
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  userId         String?
+  action         String   // e.g., "CREATE", "UPDATE", "DELETE", "LOGIN"
+  entityType     String   // e.g., "User", "Settings"
+  entityId       String?
+  oldValue       Json?
+  newValue       Json?
+  ipAddress      String?
+  userAgent      String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+
+  // Relations
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([organizationId, createdAt])
+  @@index([entityType, entityId])
+  @@map("audit_logs")
+}
+
+// ============================================
+// NOTIFICATIONS
+// ============================================
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType @default(INFO)
+  title     String
+  message   String
+  link      String?
+  read      Boolean          @default(false)
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+
+  @@index([userId, read])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+  SYSTEM
+}
+
+// ============================================
+// FILE STORAGE (Optional)
+// ============================================
+
+model File {
+  id             String   @id @default(cuid())
+  organizationId String?
+  name           String
+  originalName   String
+  mimeType       String
+  size           Int
+  path           String
+  url            String?
+  uploadedBy     String?
+  metadata       Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([organizationId])
+  @@map("files")
+}
+
+// ============================================
+// API KEYS (Optional - for integrations)
+// ============================================
+
+model ApiKey {
+  id             String    @id @default(cuid())
+  organizationId String
+  name           String
+  key            String    @unique
+  permissions    String[]
+  expiresAt      DateTime?
+  lastUsedAt     DateTime?
+  active         Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([organizationId])
+  @@index([key])
+  @@map("api_keys")
+}
+
+// ============================================
+// TASK MANAGEMENT - ANY.DO CLONE
+// ============================================
+
+// Main Task entity
+model Task {
+  id              String       @id @default(cuid())
+  organizationId  String
+  createdById     String
+  assignedToId    String?
+  listId          String?
+  boardId         String?
+  boardColumnId   String?
+  parentTaskId    String?      // For sub-tasks
+  
+  title           String
+  description     String?      @db.Text
+  notes           String?      @db.Text
+  priority        TaskPriority @default(NONE)
+  status          TaskStatus   @default(TODO)
+  
+  dueDate         DateTime?
+  dueTime         DateTime?
+  startDate       DateTime?
+  completedAt     DateTime?
+  
+  estimatedMinutes Int?
+  actualMinutes    Int?
+  
+  isRecurring     Boolean      @default(false)
+  recurrenceRule  String?      // RRULE format
+  
+  position        Int          @default(0)  // For ordering
+  
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  deletedAt       DateTime?    // Soft delete
+
+  // Relations
+  organization    Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy       User            @relation("TaskCreator", fields: [createdById], references: [id])
+  assignedTo      User?           @relation("TaskAssignee", fields: [assignedToId], references: [id])
+  list            TaskList?       @relation(fields: [listId], references: [id], onDelete: SetNull)
+  board           Board?          @relation(fields: [boardId], references: [id], onDelete: SetNull)
+  boardColumn     BoardColumn?    @relation(fields: [boardColumnId], references: [id], onDelete: SetNull)
+  parentTask      Task?           @relation("SubTasks", fields: [parentTaskId], references: [id], onDelete: Cascade)
+  subTasks        Task[]          @relation("SubTasks")
+  
+  tags            TaskTag[]
+  attachments     TaskAttachment[]
+  comments        TaskComment[]
+  reminders       TaskReminder[]
+  customFields    TaskCustomFieldValue[]
+  activities      TaskActivity[]
+  timeEntries     TimeEntry[]
+  checklists      TaskChecklist[]
+
+  @@index([organizationId])
+  @@index([createdById])
+  @@index([assignedToId])
+  @@index([listId])
+  @@index([boardId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("tasks")
+}
+
+enum TaskPriority {
+  NONE
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  IN_REVIEW
+  BLOCKED
+  COMPLETED
+  CANCELLED
+}
+
+// Task Lists (like Any.do lists)
+model TaskList {
+  id              String   @id @default(cuid())
+  organizationId  String
+  createdById     String
+  
+  name            String
+  description     String?
+  icon            String?  // Emoji or icon name
+  color           String?  // Hex color
+  
+  isDefault       Boolean  @default(false)
+  isShared        Boolean  @default(false)
+  isFavorite      Boolean  @default(false)
+  
+  position        Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  // Relations
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy       User         @relation(fields: [createdById], references: [id])
+  tasks           Task[]
+  sharedWith      TaskListShare[]
+
+  @@unique([organizationId, name])
+  @@index([organizationId])
+  @@map("task_lists")
+}
+
+// Shared list access
+model TaskListShare {
+  id        String           @id @default(cuid())
+  listId    String
+  userId    String
+  role      ListShareRole    @default(VIEWER)
+  createdAt DateTime         @default(now())
+
+  list      TaskList         @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, userId])
+  @@map("task_list_shares")
+}
+
+enum ListShareRole {
+  VIEWER
+  EDITOR
+  ADMIN
+}
+
+// Tags for visual organization
+model Tag {
+  id              String   @id @default(cuid())
+  organizationId  String
+  
+  name            String
+  color           String   // Hex color code
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  tasks           TaskTag[]
+
+  @@unique([organizationId, name])
+  @@map("tags")
+}
+
+model TaskTag {
+  taskId    String
+  tagId     String
+  
+  task      Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  tag       Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, tagId])
+  @@map("task_tags")
+}
+
+// Kanban Boards
+model Board {
+  id              String   @id @default(cuid())
+  organizationId  String
+  createdById     String
+  
+  name            String
+  description     String?
+  color           String?
+  icon            String?
+  
+  isPrivate       Boolean  @default(false)
+  isTemplate      Boolean  @default(false)
+  
+  defaultView     BoardView @default(KANBAN)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  // Relations
+  organization    Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy       User            @relation(fields: [createdById], references: [id])
+  columns         BoardColumn[]
+  tasks           Task[]
+  members         BoardMember[]
+  automations     BoardAutomation[]
+
+  @@index([organizationId])
+  @@map("boards")
+}
+
+enum BoardView {
+  KANBAN
+  LIST
+  CALENDAR
+  TABLE
+  GANTT
+}
+
+model BoardColumn {
+  id          String   @id @default(cuid())
+  boardId     String
+  
+  name        String
+  color       String?
+  position    Int      @default(0)
+  wipLimit    Int?     // Work in progress limit
+  
+  isCollapsed Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  board       Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+
+  @@index([boardId])
+  @@map("board_columns")
+}
+
+model BoardMember {
+  id        String      @id @default(cuid())
+  boardId   String
+  userId    String
+  role      BoardRole   @default(MEMBER)
+  createdAt DateTime    @default(now())
+
+  board     Board       @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([boardId, userId])
+  @@map("board_members")
+}
+
+enum BoardRole {
+  VIEWER
+  MEMBER
+  ADMIN
+  OWNER
+}
+
+// Task Comments
+model TaskComment {
+  id        String   @id @default(cuid())
+  taskId    String
+  userId    String
+  parentId  String?  // For threaded comments
+  
+  content   String   @db.Text
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  // Relations
+  task      Task          @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  parent    TaskComment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   TaskComment[] @relation("CommentReplies")
+
+  @@index([taskId])
+  @@map("task_comments")
+}
+
+// Task Attachments
+model TaskAttachment {
+  id        String   @id @default(cuid())
+  taskId    String
+  userId    String
+  
+  name      String
+  url       String
+  mimeType  String
+  size      Int
+  
+  createdAt DateTime @default(now())
+
+  // Relations
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@map("task_attachments")
+}
+
+// Task Reminders
+model TaskReminder {
+  id           String         @id @default(cuid())
+  taskId       String
+  userId       String
+  
+  type         ReminderType   @default(TIME)
+  
+  remindAt     DateTime?      // For time-based
+  location     String?        // For location-based
+  locationLat  Float?
+  locationLng  Float?
+  
+  isTriggered  Boolean        @default(false)
+  triggeredAt  DateTime?
+  
+  createdAt    DateTime       @default(now())
+
+  // Relations
+  task         Task           @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([remindAt])
+  @@map("task_reminders")
+}
+
+enum ReminderType {
+  TIME
+  LOCATION
+}
+
+// Custom Fields for Tasks
+model CustomField {
+  id              String          @id @default(cuid())
+  organizationId  String
+  
+  name            String
+  type            CustomFieldType
+  options         Json?           // For dropdown/multiselect
+  isRequired      Boolean         @default(false)
+  
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  // Relations
+  organization    Organization    @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  values          TaskCustomFieldValue[]
+
+  @@unique([organizationId, name])
+  @@map("custom_fields")
+}
+
+enum CustomFieldType {
+  TEXT
+  NUMBER
+  DATE
+  DROPDOWN
+  MULTISELECT
+  CHECKBOX
+  URL
+  EMAIL
+  PHONE
+}
+
+model TaskCustomFieldValue {
+  id            String      @id @default(cuid())
+  taskId        String
+  customFieldId String
+  value         String?
+  
+  task          Task        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  customField   CustomField @relation(fields: [customFieldId], references: [id], onDelete: Cascade)
+
+  @@unique([taskId, customFieldId])
+  @@map("task_custom_field_values")
+}
+
+// Task Activity Log
+model TaskActivity {
+  id        String   @id @default(cuid())
+  taskId    String
+  userId    String
+  
+  action    String   // e.g., "created", "completed", "assigned"
+  details   Json?
+  
+  createdAt DateTime @default(now())
+
+  // Relations
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@map("task_activities")
+}
+
+// Time Tracking
+model TimeEntry {
+  id          String   @id @default(cuid())
+  taskId      String
+  userId      String
+  
+  description String?
+  startTime   DateTime
+  endTime     DateTime?
+  duration    Int?     // In minutes
+  
+  isBillable  Boolean  @default(false)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([userId])
+  @@map("time_entries")
+}
+
+// Task Checklists
+model TaskChecklist {
+  id        String           @id @default(cuid())
+  taskId    String
+  name      String
+  position  Int              @default(0)
+  
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  // Relations
+  task      Task             @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  items     ChecklistItem[]
+
+  @@index([taskId])
+  @@map("task_checklists")
+}
+
+model ChecklistItem {
+  id          String        @id @default(cuid())
+  checklistId String
+  
+  title       String
+  isCompleted Boolean       @default(false)
+  position    Int           @default(0)
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  checklist   TaskChecklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+
+  @@index([checklistId])
+  @@map("checklist_items")
+}
+
+// Templates
+model TaskTemplate {
+  id              String   @id @default(cuid())
+  organizationId  String
+  createdById     String
+  
+  name            String
+  description     String?
+  category        String?
+  icon            String?
+  
+  isPublic        Boolean  @default(false)
+  usageCount      Int      @default(0)
+  
+  templateData    Json     // Stores the template structure
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@map("task_templates")
+}
+
+// Board Automations
+model BoardAutomation {
+  id        String   @id @default(cuid())
+  boardId   String
+  
+  name      String
+  trigger   Json     // Trigger conditions
+  action    Json     // Actions to perform
+  
+  isActive  Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@index([boardId])
+  @@map("board_automations")
+}
+
+// ============================================
+// ANY.DO SPECIFIC FEATURES
+// ============================================
+
+// User Preferences (for My Day, Calendars, Theme, etc.)
+model UserPreference {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  
+  // My Day Settings
+  showMotivationalQuote   Boolean  @default(true)
+  myDayAutoPopulate       Boolean  @default(true)
+  myDayShowOverdue        Boolean  @default(true)
+  myDayShowCalendarEvents Boolean  @default(true)
+  
+  // Default Settings
+  defaultListId       String?
+  defaultView         String   @default("myday")  // myday, next7days, all, calendar
+  
+  // Display Settings  
+  theme               String   @default("system") // light, dark, system
+  backgroundImage     String?  // URL or preset name
+  backgroundType      String   @default("preset") // preset, unsplash, custom
+  
+  // Time Settings
+  dayStartTime        String   @default("06:00")
+  morningEndTime      String   @default("12:00")
+  afternoonEndTime    String   @default("17:00")
+  eveningEndTime      String   @default("21:00")
+  weekStartsOn        Int      @default(0) // 0 = Sunday, 1 = Monday
+  timeFormat          String   @default("12h") // 12h or 24h
+  dateFormat          String   @default("MM/DD/YYYY")
+  
+  // Notification Settings
+  desktopNotifications Boolean @default(true)
+  emailDigest          Boolean @default(true)
+  soundEnabled         Boolean @default(true)
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("user_preferences")
+}
+
+// Shared Spaces (like Any.do spaces for teams/families)
+model Space {
+  id              String   @id @default(cuid())
+  organizationId  String
+  createdById     String
+  
+  name            String
+  description     String?
+  icon            String?
+  color           String?
+  avatar          String?
+  
+  isDefault       Boolean  @default(false)
+  isPersonal      Boolean  @default(false) // Personal space vs shared
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  // Relations
+  organization    Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  members         SpaceMember[]
+  lists           SpaceList[]
+  boards          SpaceBoard[]
+
+  @@index([organizationId])
+  @@map("spaces")
+}
+
+model SpaceMember {
+  id        String   @id @default(cuid())
+  spaceId   String
+  userId    String
+  role      String   @default("member") // owner, admin, member, viewer
+  
+  invitedAt DateTime @default(now())
+  joinedAt  DateTime?
+
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  @@unique([spaceId, userId])
+  @@map("space_members")
+}
+
+// Junction table for Space and TaskList
+model SpaceList {
+  id        String   @id @default(cuid())
+  spaceId   String
+  listId    String
+
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  @@unique([spaceId, listId])
+  @@map("space_lists")
+}
+
+// Junction table for Space and Board
+model SpaceBoard {
+  id        String   @id @default(cuid())
+  spaceId   String
+  boardId   String
+
+  space     Space    @relation(fields: [spaceId], references: [id], onDelete: Cascade)
+
+  @@unique([spaceId, boardId])
+  @@map("space_boards")
+}
+
+// Calendar Connections (Google, Outlook, Apple, etc.)
+model CalendarConnection {
+  id              String   @id @default(cuid())
+  userId          String
+  
+  provider        String   // google, microsoft, apple, caldav
+  providerAccountId String
+  
+  accessToken     String?  @db.Text
+  refreshToken    String?  @db.Text
+  tokenExpiry     DateTime?
+  
+  calendarId      String   // The specific calendar ID from provider
+  calendarName    String
+  calendarColor   String?
+  
+  isEnabled       Boolean  @default(true)
+  syncEvents      Boolean  @default(true)
+  syncTasks       Boolean  @default(false)
+  
+  lastSyncAt      DateTime?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, provider, calendarId])
+  @@index([userId])
+  @@map("calendar_connections")
+}
+
+// Synced Calendar Events (read-only from external calendars)
+model CalendarEvent {
+  id               String   @id @default(cuid())
+  connectionId     String
+  
+  externalId       String   // ID from external calendar
+  title            String
+  description      String?  @db.Text
+  location         String?
+  
+  startTime        DateTime
+  endTime          DateTime
+  isAllDay         Boolean  @default(false)
+  
+  recurrenceRule   String?
+  
+  status           String   @default("confirmed") // confirmed, tentative, cancelled
+  visibility       String   @default("default") // default, public, private
+  
+  attendees        Json?    // List of attendees
+  
+  organizer        String?
+  organizerEmail   String?
+  
+  color            String?
+  
+  rawData          Json?    // Raw event data from provider
+  
+  lastSyncedAt     DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([connectionId, externalId])
+  @@index([connectionId])
+  @@index([startTime])
+  @@map("calendar_events")
+}
+
+// My Day entries (tasks added to My Day focus)
+model MyDayEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  taskId    String
+  date      DateTime @db.Date
+  
+  addedAt   DateTime @default(now())
+
+  @@unique([userId, taskId, date])
+  @@index([userId, date])
+  @@map("my_day_entries")
+}
+
+// Archived Items tracking
+model ArchivedItem {
+  id           String   @id @default(cuid())
+  userId       String
+  itemType     String   // task, list, board
+  itemId       String
+  
+  archivedAt   DateTime @default(now())
+  
+  @@unique([itemType, itemId])
+  @@index([userId])
+  @@index([itemType])
+  @@map("archived_items")
+}
+
+// Import History (for Import to Any.do feature)
+model ImportHistory {
+  id              String   @id @default(cuid())
+  userId          String
+  
+  source          String   // todoist, wunderlist, google-tasks, csv, etc.
+  status          String   // pending, processing, completed, failed
+  
+  totalItems      Int      @default(0)
+  importedItems   Int      @default(0)
+  failedItems     Int      @default(0)
+  
+  importLog       Json?    // Detailed import log
+  errorMessage    String?
+  
+  createdAt       DateTime @default(now())
+  completedAt     DateTime?
+
+  @@index([userId])
+  @@map("import_history")
+}
+
+// Quick Add Suggestions (for smart task creation)
+model QuickAddSuggestion {
+  id              String   @id @default(cuid())
+  organizationId  String
+  
+  phrase          String   // Trigger phrase
+  listId          String?  // Suggest this list
+  tagIds          String[] // Suggest these tags
+  priority        TaskPriority?
+  
+  usageCount      Int      @default(0)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([organizationId])
+  @@map("quick_add_suggestions")
+}
+
+// ============================================
+// SUBSCRIPTION & BILLING
+// ============================================
+
+model SubscriptionPlan {
+  id            String   @id @default(cuid())
+  name          String   @unique // e.g., "free", "premium_monthly", "premium_yearly"
+  displayName   String
+  description   String?
+  
+  priceMonthly  Float?   // Price in cents
+  priceYearly   Float?
+  
+  features      Json     // Array of feature strings
+  
+  isActive      Boolean  @default(true)
+  isFeatured    Boolean  @default(false)
+  
+  trialDays     Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  subscriptions Subscription[]
+
+  @@map("subscription_plans")
+}
+
+model Subscription {
+  id                  String             @id @default(cuid())
+  userId              String             @unique
+  planId              String
+  
+  status              SubscriptionStatus @default(ACTIVE)
+  
+  currentPeriodStart  DateTime
+  currentPeriodEnd    DateTime
+  
+  cancelAtPeriodEnd   Boolean            @default(false)
+  canceledAt          DateTime?
+  
+  trialStart          DateTime?
+  trialEnd            DateTime?
+  
+  stripeCustomerId    String?
+  stripeSubscriptionId String?
+  
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  plan                SubscriptionPlan   @relation(fields: [planId], references: [id])
+
+  @@index([userId])
+  @@index([planId])
+  @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIAL
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+// ============================================
+// AUTH TOKENS
+// ============================================
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@map("password_reset_tokens")
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@map("email_verification_tokens")
+}
+

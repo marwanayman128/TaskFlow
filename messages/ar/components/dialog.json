@@ -1,0 +1,46 @@
+{
+  "confirm": {
+    "title": "تأكيد الإجراء",
+    "description": "هل أنت متأكد من المتابعة؟",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء"
+  },
+  "delete": {
+    "title": "حذف العنصر",
+    "description": "هل أنت متأكد من حذف هذا العنصر؟",
+    "warning": "لا يمكن التراجع عن هذا الإجراء.",
+    "confirm": "حذف",
+    "cancel": "إلغاء"
+  },
+  "unsavedChanges": {
+    "title": "تغييرات غير محفوظة",
+    "description": "لديك تغييرات غير محفوظة. هل أنت متأكد من المغادرة؟",
+    "leave": "مغادرة",
+    "stay": "البقاء"
+  },
+  "export": {
+    "title": "تصدير البيانات",
+    "description": "اختر تنسيق التصدير",
+    "formats": {
+      "csv": "CSV",
+      "excel": "Excel",
+      "pdf": "PDF",
+      "json": "JSON"
+    },
+    "options": {
+      "allData": "جميع البيانات",
+      "selectedOnly": "المحدد فقط",
+      "currentPage": "الصفحة الحالية"
+    },
+    "export": "تصدير",
+    "cancel": "إلغاء"
+  },
+  "import": {
+    "title": "استيراد البيانات",
+    "description": "ارفع ملفاً لاستيراد البيانات",
+    "dropzone": "اسحب ملفك هنا أو انقر للاستعراض",
+    "formats": "التنسيقات المدعومة: CSV, Excel, JSON",
+    "import": "استيراد",
+    "cancel": "إلغاء"
+  }
+}

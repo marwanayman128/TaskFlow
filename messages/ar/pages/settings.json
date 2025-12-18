@@ -1,0 +1,127 @@
+{
+  "title": "الإعدادات",
+  "subtitle": "إدارة إعدادات التطبيق",
+  "tabs": {
+    "general": "عام",
+    "appearance": "المظهر",
+    "notifications": "الإشعارات",
+    "security": "الأمان",
+    "api": "مفاتيح API"
+  },
+  "general": {
+    "title": "الإعدادات العامة",
+    "description": "تكوين إعدادات التطبيق الأساسية",
+    "appName": {
+      "label": "اسم التطبيق",
+      "placeholder": "لوحة التحكم"
+    },
+    "description": {
+      "label": "الوصف",
+      "placeholder": "وصف موجز لتطبيقك"
+    },
+    "timezone": {
+      "label": "المنطقة الزمنية",
+      "placeholder": "اختر المنطقة الزمنية"
+    },
+    "language": {
+      "label": "اللغة",
+      "placeholder": "اختر اللغة"
+    },
+    "currency": {
+      "label": "العملة",
+      "placeholder": "اختر العملة"
+    },
+    "dateFormat": {
+      "label": "تنسيق التاريخ",
+      "placeholder": "اختر تنسيق التاريخ"
+    }
+  },
+  "appearance": {
+    "title": "المظهر",
+    "description": "تخصيص شكل التطبيق",
+    "theme": {
+      "label": "المظهر",
+      "light": "فاتح",
+      "dark": "داكن",
+      "system": "النظام"
+    },
+    "colorPalette": {
+      "label": "لوحة الألوان",
+      "description": "اختر نظام الألوان المفضل"
+    },
+    "fontSize": {
+      "label": "حجم الخط",
+      "small": "صغير",
+      "medium": "متوسط",
+      "large": "كبير"
+    },
+    "compactMode": {
+      "label": "الوضع المضغوط",
+      "description": "استخدم تخطيط أكثر ضغطاً"
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "description": "تكوين طريقة استلام الإشعارات",
+    "email": {
+      "label": "إشعارات البريد الإلكتروني",
+      "description": "استلام الإشعارات عبر البريد الإلكتروني"
+    },
+    "push": {
+      "label": "الإشعارات الفورية",
+      "description": "استلام إشعارات فورية في المتصفح"
+    },
+    "inApp": {
+      "label": "إشعارات داخل التطبيق",
+      "description": "عرض الإشعارات داخل التطبيق"
+    },
+    "digest": {
+      "label": "ملخص يومي",
+      "description": "استلام ملخص يومي للأنشطة"
+    }
+  },
+  "security": {
+    "title": "الأمان",
+    "description": "إدارة إعدادات الأمان",
+    "changePassword": {
+      "label": "تغيير كلمة المرور",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "button": "تحديث كلمة المرور"
+    },
+    "twoFactor": {
+      "label": "التحقق بخطوتين",
+      "description": "إضافة طبقة أمان إضافية",
+      "enable": "تفعيل التحقق بخطوتين",
+      "disable": "إلغاء التحقق بخطوتين"
+    },
+    "sessions": {
+      "label": "الجلسات النشطة",
+      "description": "إدارة جلساتك النشطة",
+      "current": "الجلسة الحالية",
+      "signOutAll": "تسجيل الخروج من جميع الجلسات الأخرى"
+    }
+  },
+  "api": {
+    "title": "مفاتيح API",
+    "description": "إدارة مفاتيح API",
+    "create": "إنشاء مفتاح API",
+    "revoke": "إلغاء",
+    "copy": "نسخ",
+    "name": "الاسم",
+    "key": "مفتاح API",
+    "createdAt": "تاريخ الإنشاء",
+    "lastUsed": "آخر استخدام",
+    "never": "أبداً",
+    "empty": {
+      "title": "لا توجد مفاتيح API",
+      "description": "أنشئ مفتاح API للتكامل مع الخدمات الخارجية."
+    }
+  },
+  "messages": {
+    "saved": "تم حفظ الإعدادات بنجاح",
+    "error": "خطأ في حفظ الإعدادات",
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح"
+  }
+}

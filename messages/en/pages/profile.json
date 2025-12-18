@@ -1,0 +1,47 @@
+{
+  "title": "Profile",
+  "subtitle": "Manage your personal information",
+  "editProfile": "Edit Profile",
+  "saveChanges": "Save Changes",
+  "sections": {
+    "personalInfo": "Personal Information",
+    "contactInfo": "Contact Information",
+    "preferences": "Preferences",
+    "security": "Security"
+  },
+  "fields": {
+    "avatar": {
+      "label": "Profile Photo",
+      "change": "Change Photo",
+      "remove": "Remove Photo"
+    },
+    "fullName": {
+      "label": "Full Name",
+      "placeholder": "Enter your full name"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Enter your email"
+    },
+    "phone": {
+      "label": "Phone Number",
+      "placeholder": "Enter your phone number"
+    },
+    "language": {
+      "label": "Preferred Language"
+    },
+    "timezone": {
+      "label": "Timezone"
+    },
+    "bio": {
+      "label": "Bio",
+      "placeholder": "Write a short bio about yourself"
+    }
+  },
+  "messages": {
+    "updated": "Profile updated successfully",
+    "avatarUpdated": "Profile photo updated",
+    "avatarRemoved": "Profile photo removed",
+    "error": "Error updating profile"
+  }
+}
