@@ -23,11 +23,11 @@ export function TaskDetailDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[85vh] p-0 overflow-hidden flex flex-col">
+      <DialogContent className="max-w-2xl max-h-[85vh] p-0 flex flex-col overflow-hidden">
         <TaskDetailContent
           task={task}
           showHeader={true}
-          className="h-full"
+          className="flex-1 min-h-0 overflow-hidden"
           {...contentProps}
         />
       </DialogContent>

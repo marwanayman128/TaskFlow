@@ -348,6 +348,27 @@ export class TaskService {
       },
     });
 
+    // Automatically create a reminder if task has a due date/time
+    if (taskData.dueDate || taskData.dueTime) {
+      const remindAt = taskData.dueTime 
+        ? new Date(taskData.dueTime) 
+        : taskData.dueDate 
+          ? new Date(taskData.dueDate) 
+          : null;
+      
+      if (remindAt) {
+        await prisma.taskReminder.create({
+          data: {
+            taskId: task.id,
+            userId,
+            type: 'TIME',
+            remindAt,
+            location: taskData.location || null,
+          },
+        });
+      }
+    }
+
     // Create activity log
     await prisma.taskActivity.create({
       data: {
@@ -445,6 +466,40 @@ export class TaskService {
           details: { changes },
         },
       });
+    }
+
+    // Handle reminder updates when due date/time changes
+    if (updateData.dueDate !== undefined || updateData.dueTime !== undefined) {
+      // Delete existing non-triggered reminders for this task
+      await prisma.taskReminder.deleteMany({
+        where: {
+          taskId,
+          isTriggered: false,
+          type: 'TIME',
+        },
+      });
+
+      // Create new reminder if there's a due date/time
+      const newDueTime = updateData.dueTime !== undefined 
+        ? (updateData.dueTime ? new Date(updateData.dueTime) : null)
+        : existingTask.dueTime;
+      const newDueDate = updateData.dueDate !== undefined 
+        ? (updateData.dueDate ? new Date(updateData.dueDate) : null)
+        : existingTask.dueDate;
+      
+      const remindAt = newDueTime || newDueDate;
+      
+      if (remindAt && remindAt > new Date()) {
+        await prisma.taskReminder.create({
+          data: {
+            taskId,
+            userId,
+            type: 'TIME',
+            remindAt,
+            location: updateData.location ?? existingTask.location,
+          },
+        });
+      }
     }
 
     return task as unknown as Task;

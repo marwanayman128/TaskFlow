@@ -23,10 +23,11 @@ export function TaskDetailSheet({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent className="w-full sm:max-w-lg p-0 overflow-hidden">
+      <SheetContent className="w-full sm:max-w-lg p-0 flex flex-col overflow-hidden">
         <TaskDetailContent
           task={task}
           showHeader={true}
+          className="flex-1 min-h-0 overflow-hidden"
           {...contentProps}
         />
       </SheetContent>

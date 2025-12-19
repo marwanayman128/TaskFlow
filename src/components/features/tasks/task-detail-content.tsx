@@ -130,7 +130,7 @@ export function TaskDetailContent({
   };
 
   return (
-    <div className={cn("flex flex-col h-full", className)}>
+    <div className={cn("flex flex-col h-full min-h-0", className)}>
       {/* Header Actions */}
       {showHeader && (
         <div className="flex items-center justify-between p-4 pb-3 border-b border-border/40">
@@ -303,7 +303,7 @@ export function TaskDetailContent({
       )}
 
       {/* Main Content */}
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 min-h-0">
         <div className="p-6 space-y-6">
           {/* Title Area */}
           <div className="space-y-4">

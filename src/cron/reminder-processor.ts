@@ -11,6 +11,39 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import { WhatsAppClientManager } from '@/lib/whatsapp-client';
+import { format } from 'date-fns';
+
+// Helper function to send WhatsApp notification
+async function sendWhatsAppNotification(
+  taskTitle: string,
+  dueDate?: Date | null,
+  location?: string | null,
+  recipientPhone?: string | null
+): Promise<boolean> {
+  if (!recipientPhone) return false;
+  
+  try {
+    // Build the message
+    let message = `📋 *Task Reminder*\n\n`;
+    message += `*Task:* ${taskTitle}\n`;
+    
+    if (dueDate) {
+      message += `*Due:* ${format(new Date(dueDate), 'MMM d, yyyy h:mm a')}\n`;
+    }
+    
+    if (location) {
+      message += `*Location:* ${location}\n`;
+    }
+    
+    message += `\n_Stay productive with TaskFlow!_ ✨`;
+    
+    return await WhatsAppClientManager.sendMessage(recipientPhone, message);
+  } catch (error) {
+    console.error('[WhatsApp] Failed to send reminder notification:', error);
+    return false;
+  }
+}
 
 export async function processReminders() {
   const now = new Date();
@@ -31,6 +64,7 @@ export async function processReminders() {
             id: true,
             title: true,
             status: true,
+            dueDate: true,
             createdById: true,
             organizationId: true,
           },
@@ -39,6 +73,25 @@ export async function processReminders() {
     });
 
     console.log(`[Reminder Processor] Found ${dueReminders.length} due reminders`);
+
+    // Get WhatsApp integration settings for all unique users
+    const userIds = [...new Set(dueReminders.map(r => r.userId))];
+    const whatsappIntegrations = await prisma.userIntegration.findMany({
+      where: {
+        provider: 'whatsapp',
+        isActive: true,
+        userId: { in: userIds },
+      },
+      select: {
+        userId: true,
+        externalId: true, // This stores the recipient phone number
+      },
+    });
+    
+    // Create a map for quick lookup
+    const whatsappByUser = new Map(
+      whatsappIntegrations.map(i => [i.userId, i.externalId])
+    );
 
     for (const reminder of dueReminders) {
       // Skip if task is already completed
@@ -60,6 +113,20 @@ export async function processReminders() {
           link: `/dashboard/tasks/${reminder.task.id}`,
         },
       });
+
+      // Send WhatsApp notification if user has connected WhatsApp
+      const recipientPhone = whatsappByUser.get(reminder.userId);
+      if (recipientPhone) {
+        const whatsappSent = await sendWhatsAppNotification(
+          reminder.task.title,
+          reminder.task.dueDate,
+          (reminder as any).location || null,
+          recipientPhone
+        );
+        if (whatsappSent) {
+          console.log(`[Reminder Processor] WhatsApp notification sent for task: ${reminder.task.title}`);
+        }
+      }
 
       // Mark reminder as triggered
       await prisma.taskReminder.update({
