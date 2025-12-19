@@ -1170,3 +1170,289 @@ export class TagService {
     return true;
   }
 }
+
+// ============================================
+// COMMENT SERVICE
+// ============================================
+
+export class CommentService {
+  static async getComments(taskId: string) {
+    const comments = await prisma.taskComment.findMany({
+      where: { 
+        taskId,
+        deletedAt: null,
+        parentId: null, // Only top-level comments
+      },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+        replies: {
+          where: { deletedAt: null },
+          include: {
+            user: {
+              select: { id: true, fullName: true, avatar: true },
+            },
+          },
+          orderBy: { createdAt: 'asc' },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return comments;
+  }
+
+  static async createComment(
+    taskId: string,
+    userId: string,
+    input: CreateCommentInput
+  ) {
+    const comment = await prisma.taskComment.create({
+      data: {
+        taskId,
+        userId,
+        content: input.content,
+        parentId: input.parentId,
+      },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    // Log activity
+    await ActivityService.logActivity(taskId, userId, 'COMMENT_ADDED', {
+      commentId: comment.id,
+      content: input.content.substring(0, 100),
+    });
+
+    return comment;
+  }
+
+  static async updateComment(
+    commentId: string,
+    userId: string,
+    content: string
+  ) {
+    const existing = await prisma.taskComment.findFirst({
+      where: { id: commentId, userId },
+    });
+
+    if (!existing) return null;
+
+    const comment = await prisma.taskComment.update({
+      where: { id: commentId },
+      data: { content },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    return comment;
+  }
+
+  static async deleteComment(commentId: string, userId: string) {
+    const existing = await prisma.taskComment.findFirst({
+      where: { id: commentId, userId },
+    });
+
+    if (!existing) return false;
+
+    // Soft delete
+    await prisma.taskComment.update({
+      where: { id: commentId },
+      data: { deletedAt: new Date() },
+    });
+
+    return true;
+  }
+}
+
+// ============================================
+// ACTIVITY SERVICE
+// ============================================
+
+export class ActivityService {
+  static async getActivities(taskId: string, limit: number = 50) {
+    const activities = await prisma.taskActivity.findMany({
+      where: { taskId },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    });
+
+    return activities;
+  }
+
+  static async logActivity(
+    taskId: string,
+    userId: string,
+    action: string,
+    details?: Record<string, unknown>
+  ) {
+    const activity = await prisma.taskActivity.create({
+      data: {
+        taskId,
+        userId,
+        action,
+        details: details as any,
+      },
+    });
+
+    return activity;
+  }
+}
+
+// ============================================
+// TIME TRACKING SERVICE
+// ============================================
+
+export class TimeTrackingService {
+  static async getTimeEntries(taskId: string) {
+    const entries = await prisma.timeEntry.findMany({
+      where: { taskId },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+      orderBy: { startTime: 'desc' },
+    });
+
+    return entries;
+  }
+
+  static async startTimer(
+    taskId: string,
+    userId: string,
+    description?: string
+  ) {
+    // Check if there's already a running timer for this user
+    const existingTimer = await prisma.timeEntry.findFirst({
+      where: {
+        userId,
+        endTime: null,
+      },
+    });
+
+    if (existingTimer) {
+      // Stop the existing timer first
+      await this.stopTimer(existingTimer.id, userId);
+    }
+
+    const entry = await prisma.timeEntry.create({
+      data: {
+        taskId,
+        userId,
+        description,
+        startTime: new Date(),
+      },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    return entry;
+  }
+
+  static async stopTimer(entryId: string, userId: string) {
+    const entry = await prisma.timeEntry.findFirst({
+      where: { id: entryId, userId, endTime: null },
+    });
+
+    if (!entry) return null;
+
+    const endTime = new Date();
+    const duration = Math.floor((endTime.getTime() - entry.startTime.getTime()) / 1000 / 60); // in minutes
+
+    const updated = await prisma.timeEntry.update({
+      where: { id: entryId },
+      data: {
+        endTime,
+        duration,
+      },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    return updated;
+  }
+
+  static async addManualEntry(
+    taskId: string,
+    userId: string,
+    data: {
+      description?: string;
+      startTime: Date;
+      endTime: Date;
+      isBillable?: boolean;
+    }
+  ) {
+    const duration = Math.floor((data.endTime.getTime() - data.startTime.getTime()) / 1000 / 60);
+
+    const entry = await prisma.timeEntry.create({
+      data: {
+        taskId,
+        userId,
+        description: data.description,
+        startTime: data.startTime,
+        endTime: data.endTime,
+        duration,
+        isBillable: data.isBillable ?? false,
+      },
+      include: {
+        user: {
+          select: { id: true, fullName: true, avatar: true },
+        },
+      },
+    });
+
+    return entry;
+  }
+
+  static async deleteEntry(entryId: string, userId: string) {
+    const entry = await prisma.timeEntry.findFirst({
+      where: { id: entryId, userId },
+    });
+
+    if (!entry) return false;
+
+    await prisma.timeEntry.delete({ where: { id: entryId } });
+    return true;
+  }
+
+  static async getTaskTotalTime(taskId: string): Promise<number> {
+    const result = await prisma.timeEntry.aggregate({
+      where: { taskId, endTime: { not: null } },
+      _sum: { duration: true },
+    });
+
+    return result._sum.duration || 0;
+  }
+
+  static async getActiveTimer(userId: string) {
+    const timer = await prisma.timeEntry.findFirst({
+      where: { userId, endTime: null },
+      include: {
+        task: {
+          select: { id: true, title: true },
+        },
+      },
+    });
+
+    return timer;
+  }
+}

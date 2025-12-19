@@ -23,6 +23,14 @@
       "title": "التقويم",
       "description": "عرض التقويم"
     },
+    "analytics": {
+      "title": "التحليلات",
+      "description": "رؤى الإنتاجية"
+    },
+    "gantt": {
+      "title": "مخطط غانت",
+      "description": "عرض الجدول الزمني"
+    },
     "settings": {
       "title": "الإعدادات",
       "description": "إعدادات التطبيق",
@@ -30,6 +38,10 @@
       "preferences": "التفضيلات",
       "integrations": "التكاملات",
       "import": "استيراد"
+    },
+    "users": {
+      "title": "المستخدمون",
+      "description": "إدارة المستخدمين"
     }
   }
 }

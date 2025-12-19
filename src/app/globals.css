@@ -1,6 +1,7 @@
 ﻿@import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
+
 .main-gradient-primary-bg {
     @apply bg-linear-to-br from-primary/10 via-background to-primary/10;
 }
@@ -90,6 +91,12 @@
 .analytics-gradient-red {
     @apply bg-gradient-to-br from-red-400/20 via-red-400/5 to-transparent;
 }
+
+.analytics-gradient-zinc {
+    @apply bg-gradient-to-br from-zinc-400/20 via-zinc-400/5 to-transparent;
+}
+
+
 
 
 /* Toast Background Classes */
@@ -305,7 +312,7 @@
     --radius: 0.75rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -314,7 +321,7 @@
     --spacing: 0.25rem;
     --scrollbar-track: rgb(235 237 239);
     --scrollbar-thumb: rgb(224 93 56);
-    --scrollbar-thumb-hover:rgb(183 71 40);
+    --scrollbar-thumb-hover: rgb(183 71 40);
 }
 
 .dark {
@@ -351,7 +358,7 @@
     --sidebar-ring: rgb(224 93 56);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -359,7 +366,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(42 48 63);
     --scrollbar-thumb: rgb(224 93 56);
-    --scrollbar-thumb-hover:rgb(255 189 165);
+    --scrollbar-thumb-hover: rgb(255 189 165);
 }
 
 :root[data-palette="terracotta"] {
@@ -397,7 +404,7 @@
     --sidebar-ring: rgb(224 93 56);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -405,7 +412,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(245 245 245);
     --scrollbar-thumb: rgb(224 93 56);
-    --scrollbar-thumb-hover:rgb(253 187 158);
+    --scrollbar-thumb-hover: rgb(253 187 158);
 }
 
 .dark[data-palette="terracotta"] {
@@ -443,7 +450,7 @@
     --sidebar-ring: rgb(224 93 56);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -451,7 +458,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(42 48 63);
     --scrollbar-thumb: rgb(224 93 56);
-    --scrollbar-thumb-hover:rgb(253 187 158);
+    --scrollbar-thumb-hover: rgb(253 187 158);
 }
 
 :root[data-palette="botanical"] {
@@ -492,7 +499,7 @@
     --radius: 0.5rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -503,7 +510,7 @@
     /* light gray */
     --scrollbar-thumb: rgb(200 200 200);
     /* medium gray */
-    --scrollbar-thumb-hover:rgb(160 160 160);
+    --scrollbar-thumb-hover: rgb(160 160 160);
     /* darker gray on hover */
 }
 
@@ -541,7 +548,7 @@
     --sidebar-ring: rgb(74 222 128);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -551,7 +558,7 @@
     /* deep neutral gray */
     --scrollbar-thumb: rgb(90 90 90);
     /* medium-dark gray */
-    --scrollbar-thumb-hover:rgb(120 120 120);
+    --scrollbar-thumb-hover: rgb(120 120 120);
     /* slightly lighter on hover */
 }
 
@@ -593,7 +600,7 @@
     --radius: 0.65rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -602,7 +609,7 @@
     --spacing: 0.25rem;
     --scrollbar-track: rgb(238 239 243);
     --scrollbar-thumb: rgb(43 127 255);
-    --scrollbar-thumb-hover:rgb(16 78 150);
+    --scrollbar-thumb-hover: rgb(16 78 150);
 }
 
 .dark[data-palette="ocean"] {
@@ -639,7 +646,7 @@
     --sidebar-ring: rgb(20 71 230);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -647,7 +654,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(24 24 27);
     --scrollbar-thumb: rgb(21 93 252);
-    --scrollbar-thumb-hover:rgb(138 180 255);
+    --scrollbar-thumb-hover: rgb(138 180 255);
 }
 
 :root[data-palette="sunset"] {
@@ -688,7 +695,7 @@
     --radius: 0.75rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -697,7 +704,7 @@
     --spacing: 0.25rem;
     --scrollbar-track: rgb(243 244 246);
     --scrollbar-thumb: rgb(216 121 67);
-    --scrollbar-thumb-hover:rgb(183 98 51);
+    --scrollbar-thumb-hover: rgb(183 98 51);
 }
 
 .dark[data-palette="sunset"] {
@@ -734,7 +741,7 @@
     --sidebar-ring: rgb(231 138 83);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -742,7 +749,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(34 34 34);
     --scrollbar-thumb: rgb(231 138 83);
-    --scrollbar-thumb-hover:rgb(224 161 118);
+    --scrollbar-thumb-hover: rgb(224 161 118);
 }
 
 :root[data-palette="twitter"] {
@@ -783,7 +790,7 @@
     --radius: 1.3rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -792,7 +799,7 @@
     --spacing: 0.25rem;
     --scrollbar-track: rgb(227 236 246);
     --scrollbar-thumb: rgb(30 157 241);
-    --scrollbar-thumb-hover:rgb(16 110 175);
+    --scrollbar-thumb-hover: rgb(16 110 175);
 }
 
 .dark[data-palette="twitter"] {
@@ -829,7 +836,7 @@
     --sidebar-ring: rgb(29 161 242);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -837,7 +844,7 @@
     --shadow-2xl: 0 1px 3px 0px rgb(0 0 0 / 0.25);
     --scrollbar-track: rgb(23 24 28);
     --scrollbar-thumb: rgb(29 161 242);
-    --scrollbar-thumb-hover:rgb(119 188 248);
+    --scrollbar-thumb-hover: rgb(119 188 248);
 }
 
 :root[data-palette="discord"] {
@@ -878,7 +885,7 @@
     --radius: 0.65rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -924,7 +931,7 @@
     --sidebar-ring: rgb(88 101 242);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -973,7 +980,7 @@
     --radius: 0.65rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -1019,7 +1026,7 @@
     --sidebar-ring: rgb(247 72 0);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -1068,7 +1075,7 @@
     --radius: 0.5rem;
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -1114,7 +1121,7 @@
     --sidebar-ring: rgb(165 89 165);
     --shadow-2xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px rgb(0 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 1px 2px -1px rgb(0 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 2px 4px -1px rgb(0 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px rgb(0 0 0 / 0.10), 0 4px 6px -1px rgb(0 0 0 / 0.10);
@@ -1166,7 +1173,7 @@
     --radius: 0.25rem;
     --shadow-2xs: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.02);
     --shadow-xs: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.02);
-    --shadow-sm:0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.04), 0px 1px 2px -1px oklch(0.35 0.05 163.02 / 0.04);
+    --shadow-sm: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.04), 0px 1px 2px -1px oklch(0.35 0.05 163.02 / 0.04);
     --shadow: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.04), 0px 1px 2px -1px oklch(0.35 0.05 163.02 / 0.04);
     --shadow-md: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.04), 0px 2px 4px -1px oklch(0.35 0.05 163.02 / 0.04);
     --shadow-lg: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.04), 0px 4px 6px -1px oklch(0.35 0.05 163.02 / 0.04);
@@ -1174,7 +1181,7 @@
     --shadow-2xl: 0px 1px 3px 0px oklch(0.35 0.05 163.02 / 0.10);
     --scrollbar-track: oklch(0.90 0.02 240.73);
     --scrollbar-thumb: oklch(0.67 0.17 153.85);
-    --scrollbar-thumb-hover:oklch(0.72 0.17 153.85);
+    --scrollbar-thumb-hover: oklch(0.72 0.17 153.85);
 }
 
 .dark[data-palette="spotify"] {
@@ -1211,7 +1218,7 @@
     --sidebar-ring: oklch(0.67 0.17 153.85);
     --shadow-2xs: 0px 1px 2px 0px oklch(0 0 0 / 0.01);
     --shadow-xs: 0px 1px 2px 0px oklch(0 0 0 / 0.01);
-    --shadow-sm:0px 1px 2px 0px oklch(0 0 0 / 0.01), 0px 1px 2px -1px oklch(0 0 0 / 0.01);
+    --shadow-sm: 0px 1px 2px 0px oklch(0 0 0 / 0.01), 0px 1px 2px -1px oklch(0 0 0 / 0.01);
     --shadow: 0px 1px 2px 0px oklch(0 0 0 / 0.01), 0px 1px 2px -1px oklch(0 0 0 / 0.01);
     --shadow-md: 0px 1px 2px 0px oklch(0 0 0 / 0.01), 0px 2px 4px -1px oklch(0 0 0 / 0.01);
     --shadow-lg: 0px 1px 2px 0px oklch(0 0 0 / 0.01), 0px 4px 6px -1px oklch(0 0 0 / 0.01);
@@ -1219,7 +1226,7 @@
     --shadow-2xl: 0px 1px 2px 0px oklch(0 0 0 / 0.03);
     --scrollbar-track: oklch(0.30 0.03 271.05);
     --scrollbar-thumb: oklch(0.67 0.17 153.85);
-    --scrollbar-thumb-hover:oklch(0.72 0.17 153.85);
+    --scrollbar-thumb-hover: oklch(0.72 0.17 153.85);
 }
 
 
@@ -1263,7 +1270,7 @@
     --radius: 0.625rem;
     --shadow-2xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
     --shadow: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 2px 4px -1px oklch(0.00 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 4px 6px -1px oklch(0.00 0 0 / 0.10);
@@ -1271,7 +1278,7 @@
     --shadow-2xl: 0 1px 3px 0px oklch(0.00 0 0 / 0.25);
     --scrollbar-track: oklch(0.97 0 0);
     --scrollbar-thumb: oklch(0.70 0 0);
-    --scrollbar-thumb-hover:oklch(0.80 0 0);
+    --scrollbar-thumb-hover: oklch(0.80 0 0);
 }
 
 .dark[data-palette="default"] {
@@ -1308,7 +1315,7 @@
     --sidebar-ring: oklch(0.56 0 0);
     --shadow-2xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
     --shadow-xs: 0 1px 3px 0px oklch(0.00 0 0 / 0.05);
-    --shadow-sm:0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
+    --shadow-sm: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
     --shadow: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 1px 2px -1px oklch(0.00 0 0 / 0.10);
     --shadow-md: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 2px 4px -1px oklch(0.00 0 0 / 0.10);
     --shadow-lg: 0 1px 3px 0px oklch(0.00 0 0 / 0.10), 0 4px 6px -1px oklch(0.00 0 0 / 0.10);
@@ -1316,7 +1323,7 @@
     --shadow-2xl: 0 1px 3px 0px oklch(0.00 0 0 / 0.25);
     --scrollbar-track: oklch(0.20 0 0);
     --scrollbar-thumb: oklch(0.50 0 0);
-    --scrollbar-thumb-hover:oklch(0.60 0 0);
+    --scrollbar-thumb-hover: oklch(0.60 0 0);
 }
 
 @theme inline {
@@ -1354,13 +1361,13 @@
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
     --font-serif: var(--font-serif);
-    --radius-sm:calc(var(--radius) - 4px);
+    --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
     --shadow-2xs: var(--shadow-2xs);
     --shadow-xs: var(--shadow-xs);
-    --shadow-sm:var(--shadow-sm);
+    --shadow-sm: var(--shadow-sm);
     --shadow: var(--shadow);
     --shadow-md: var(--shadow-md);
     --shadow-lg: var(--shadow-lg);
@@ -1372,49 +1379,60 @@
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
     }
+
     /* Modern Scrollbar Styling */
     /* Webkit browsers (Chrome, Safari, Edge) */
-     ::-webkit-scrollbar {
+    ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
     }
-     ::-webkit-scrollbar-track {
+
+    ::-webkit-scrollbar-track {
         background: var(--scrollbar-track) !important;
         border-radius: 100vh;
     }
-     ::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb)!important;
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb) !important;
         border-radius: 100vh;
         border: 2px solid var(--scrollbar-track);
-        transition: background 0.2s ease!important;
+        transition: background 0.2s ease !important;
     }
-     ::-webkit-scrollbar-thumb:hover {
-        background: var(--scrollbar-thumb-hover)!important;
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--scrollbar-thumb-hover) !important;
     }
+
     /* Thin variant for specific containers */
     .scrollbar-thin::-webkit-scrollbar {
         width: 6px;
         height: 6px;
     }
+
     /* Hidden scrollbar but still scrollable */
     .scrollbar-hidden::-webkit-scrollbar {
         display: none;
     }
+
     .scrollbar-hidden {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
+
     /* Firefox */
     * {
         scrollbar-width: thin;
-        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track)!important;
+        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track) !important;
     }
+
     .scrollbar-thin {
         scrollbar-width: thin;
     }
+
     .scrollbar-hidden {
         scrollbar-width: none;
     }
@@ -1427,38 +1445,47 @@
     .scroll-smooth {
         scroll-behavior: smooth;
     }
+
     .snap-x {
         scroll-snap-type: x mandatory;
     }
+
     .snap-y {
         scroll-snap-type: y mandatory;
     }
+
     @keyframes sidebar-accordion-down {
         from {
             height: 0;
             opacity: 0;
         }
+
         to {
             height: var(--radix-collapsible-content-height);
             opacity: 1;
         }
     }
+
     @keyframes sidebar-accordion-up {
         from {
             height: var(--radix-collapsible-content-height);
             opacity: 1;
         }
+
         to {
             height: 0;
             opacity: 0;
         }
     }
+
     [data-sidebar-accordion] {
         overflow: hidden;
     }
+
     [data-sidebar-accordion][data-state="open"] {
         animation: sidebar-accordion-down 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     [data-sidebar-accordion][data-state="closed"] {
         animation: sidebar-accordion-up 0.3s cubic-bezier(0.7, 0, 0.84, 0);
     }
@@ -1480,7 +1507,7 @@
     --sun-bg: #ecca2f;
     --moon-bg: #c4c9d1;
     --spot-color: #959db1;
-    --circle-container-offset: calc( (var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+    --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
     --stars-color: #fff;
     --clouds-color: #f3fdff;
     --back-clouds-color: #aacadf;
@@ -1512,7 +1539,7 @@
     -o-transition: var(--transition);
     transition: var(--transition);
     position: relative;
-    background-image: linear-gradient( to bottom, var(--container-light-bg) 0%, #5490c0 100%);
+    background-image: linear-gradient(to bottom, var(--container-light-bg) 0%, #5490c0 100%);
     transition: all var(--transition);
 }
 
@@ -1658,15 +1685,15 @@
 
 .theme-switch__checkbox:checked+.theme-switch__container {
     background-color: var(--container-night-bg);
-    background-image: linear-gradient( to bottom, var(--container-night-bg) 0%, #2d3142 100%);
+    background-image: linear-gradient(to bottom, var(--container-night-bg) 0%, #2d3142 100%);
 }
 
 .theme-switch__checkbox:checked+.theme-switch__container .theme-switch__circle-container {
-    left: calc( 100% - var(--circle-container-offset) - var(--circle-container-diameter));
+    left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
 }
 
 .theme-switch__checkbox:checked+.theme-switch__container .theme-switch__circle-container:hover {
-    left: calc( 100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em);
+    left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em);
 }
 
 .theme-switch__circle-container:hover {
@@ -1698,7 +1725,7 @@
     content: "";
     position: absolute;
     inset: -5px;
-    background: radial-gradient( circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
     border-radius: 50%;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -1763,6 +1790,7 @@
         transform: translateX(0) translateY(0) rotate(45deg);
         opacity: 1;
     }
+
     100% {
         transform: translateX(150px) translateY(150px) rotate(45deg);
         opacity: 0;
@@ -1774,6 +1802,7 @@
         transform: translateY(0) scale(1);
         opacity: 1;
     }
+
     100% {
         transform: translateY(150px) scale(0.3);
         opacity: 0;
@@ -1832,7 +1861,7 @@
     left: 0;
     right: 0;
     height: 20px;
-    background: linear-gradient( 90deg, rgba(0, 255, 255, 0) 0%, rgba(0, 255, 255, 0.2) 25%, rgba(128, 0, 255, 0.2) 50%, rgba(0, 255, 255, 0.2) 75%, rgba(0, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 255, 255, 0) 0%, rgba(0, 255, 255, 0.2) 25%, rgba(128, 0, 255, 0.2) 50%, rgba(0, 255, 255, 0.2) 75%, rgba(0, 255, 255, 0) 100%);
     opacity: 0;
     filter: blur(4px);
     transform: translateY(-100%);
@@ -1869,11 +1898,13 @@
 }
 
 @keyframes twinkle {
+
     0%,
     100% {
         opacity: 0.3;
         transform: scale(1);
     }
+
     50% {
         opacity: 1;
         transform: scale(1.2);
@@ -1885,12 +1916,15 @@
         transform: translateX(0) translateY(0) rotate(-45deg) scale(1);
         opacity: 0;
     }
+
     10% {
         opacity: 1;
     }
+
     90% {
         opacity: 1;
     }
+
     100% {
         transform: translateX(200px) translateY(200px) rotate(-45deg) scale(0.2);
         opacity: 0;
@@ -1914,13 +1948,14 @@
     0% {
         transform: translateY(-100%) translateX(-50%);
     }
+
     100% {
         transform: translateY(-100%) translateX(50%);
     }
 }
 
 .blob-mask {
-    clip-path: polygon( 70% 0%, 100% 20%, 100% 60%, 80% 100%, 40% 100%, 0% 70%, 0% 30%, 30% 0%);
+    clip-path: polygon(70% 0%, 100% 20%, 100% 60%, 80% 100%, 40% 100%, 0% 70%, 0% 30%, 30% 0%);
 }
 
 
@@ -1930,8 +1965,8 @@
     --rdp-cell-size: 40px;
     --rdp-accent-color: hsl(var(--primary));
     --rdp-background-color: hsl(var(--primary) / 0.1);
-    --rdp-accent-color-dark:hsl(var(--primary));
-    --rdp-background-color-dark:hsl(var(--primary) / 0.15);
+    --rdp-accent-color-dark: hsl(var(--primary));
+    --rdp-background-color-dark: hsl(var(--primary) / 0.15);
     --rdp-outline: 2px solid hsl(var(--primary) / 0.3);
     --rdp-outline-selected: 2px solid hsl(var(--primary));
 }

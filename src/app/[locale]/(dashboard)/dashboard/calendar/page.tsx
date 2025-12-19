@@ -18,6 +18,7 @@ import { useTasks, useCreateTask, useUpdateTaskMutation, useDeleteTaskMutation, 
 import { TaskCard } from '@/components/features/tasks/task-card';
 import { TaskDetailDialog } from '@/components/features/tasks/task-detail-dialog';
 import { QuickAddTask } from '@/components/features/tasks/quick-add-task';
+import { DragToCreateCalendar } from '@/components/features/tasks/drag-to-create-calendar';
 import { toast } from 'sonner';
 
 // Days of week (Google Calendar style - starts with Sunday)
@@ -623,48 +624,97 @@ export default function CalendarPage() {
               </div>
             )}
 
-            {/* Days of week header */}
-            <div className="grid grid-cols-7 border-b border-border/40 bg-muted/20 sticky top-0 z-10">
-              {DAYS_OF_WEEK.map(day => (
-                <div 
-                  key={day} 
-                  className="text-center text-xs font-medium text-muted-foreground py-3 border-r border-border/40 last:border-r-0"
-                >
-                  {day}
+            {/* Week View - Drag to Create Calendar */}
+            {view === 'week' && (
+              <DragToCreateCalendar
+                currentDate={currentDate}
+                events={localTasks.map(task => ({
+                  id: task.id,
+                  title: task.title,
+                  start: task.dueDate ? new Date(task.dueDate) : new Date(),
+                  end: task.dueDate 
+                    ? new Date(new Date(task.dueDate).getTime() + 60 * 60 * 1000) 
+                    : new Date(Date.now() + 60 * 60 * 1000),
+                  color: task.listColor || '#3b82f6',
+                  task,
+                }))}
+                onEventClick={(event) => setSelectedTask(event.task || null)}
+                onCreateEvent={(start, end) => {
+                  // Open quick add modal with the selected start time
+                  setQuickAddDate(start);
+                }}
+              />
+            )}
+
+            {/* Day View - Single day with time grid */}
+            {view === 'day' && (
+              <DragToCreateCalendar
+                currentDate={currentDate}
+                events={localTasks.map(task => ({
+                  id: task.id,
+                  title: task.title,
+                  start: task.dueDate ? new Date(task.dueDate) : new Date(),
+                  end: task.dueDate 
+                    ? new Date(new Date(task.dueDate).getTime() + 60 * 60 * 1000) 
+                    : new Date(Date.now() + 60 * 60 * 1000),
+                  color: task.listColor || '#3b82f6',
+                  task,
+                }))}
+                onEventClick={(event) => setSelectedTask(event.task || null)}
+                onCreateEvent={(start, end) => {
+                  // Open quick add modal with the selected start time
+                  setQuickAddDate(start);
+                }}
+              />
+            )}
+
+            {/* Month View */}
+            {view === 'month' && (
+              <>
+                {/* Days of week header */}
+                <div className="grid grid-cols-7 border-b border-border/40 bg-muted/20 sticky top-0 z-10">
+                  {DAYS_OF_WEEK.map(day => (
+                    <div 
+                      key={day} 
+                      className="text-center text-xs font-medium text-muted-foreground py-3 border-r border-border/40 last:border-r-0"
+                    >
+                      {day}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* Calendar grid */}
-            <div className="flex-1 grid grid-cols-7 auto-rows-fr">
-              {calendarDays.map((date, idx) => {
-                const checkDate = new Date(date);
-                checkDate.setHours(0, 0, 0, 0);
-                const isCurrentMonth = date.getMonth() === currentDate.getMonth();
-                const isToday = checkDate.getTime() === today.getTime();
-                const isSelected = selectedDate && checkDate.getTime() === new Date(selectedDate).setHours(0,0,0,0);
-                const dayEvents = getEventsForDate(date);
+                {/* Calendar grid */}
+                <div className="flex-1 grid grid-cols-7 auto-rows-fr">
+                  {calendarDays.map((date, idx) => {
+                    const checkDate = new Date(date);
+                    checkDate.setHours(0, 0, 0, 0);
+                    const isCurrentMonth = date.getMonth() === currentDate.getMonth();
+                    const isToday = checkDate.getTime() === today.getTime();
+                    const isSelected = selectedDate && checkDate.getTime() === new Date(selectedDate).setHours(0,0,0,0);
+                    const dayEvents = getEventsForDate(date);
 
-                return (
-                  <CalendarDay
-                    key={idx}
-                    date={date}
-                    isCurrentMonth={isCurrentMonth}
-                    isToday={isToday}
-                    isSelected={!!isSelected}
-                    events={dayEvents}
-                    onClick={setSelectedDate}
-                    onEventClick={setSelectedTask}
-                    onAddTask={setQuickAddDate}
-                  />
-                );
-              })}
-            </div>
+                    return (
+                      <CalendarDay
+                        key={idx}
+                        date={date}
+                        isCurrentMonth={isCurrentMonth}
+                        isToday={isToday}
+                        isSelected={!!isSelected}
+                        events={dayEvents}
+                        onClick={setSelectedDate}
+                        onEventClick={setSelectedTask}
+                        onAddTask={setQuickAddDate}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Date Panel Sidebar */}
           <AnimatePresence>
-            {selectedDate && (
+            {selectedDate && view === 'month' && (
               <DatePanel
                 date={selectedDate}
                 events={getEventsForDate(selectedDate)}

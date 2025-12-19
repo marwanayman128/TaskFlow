@@ -17,6 +17,22 @@ import { Icon } from "@iconify/react";
 import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
+// Icon options for boards
+const BOARD_ICONS = [
+  { name: "Kanban", icon: "solar:clipboard-list-outline" },
+  { name: "Project", icon: "solar:folder-with-files-outline" },
+  { name: "Rocket", icon: "solar:rocket-2-outline" },
+  { name: "Target", icon: "solar:target-outline" },
+  { name: "Lightning", icon: "solar:bolt-outline" },
+  { name: "Chart", icon: "solar:chart-square-outline" },
+  { name: "Calendar", icon: "solar:calendar-outline" },
+  { name: "Team", icon: "solar:users-group-rounded-outline" },
+  { name: "Star", icon: "solar:star-outline" },
+  { name: "Flag", icon: "solar:flag-outline" },
+  { name: "Briefcase", icon: "solar:suitcase-outline" },
+  { name: "Code", icon: "solar:code-square-outline" },
+];
+
 // Board view options
 const BOARD_VIEWS = [
   { name: "Kanban", value: "KANBAN", icon: "solar:clipboard-list-outline", description: "Column-based workflow" },
@@ -44,6 +60,7 @@ interface CreateBoardModalProps {
   onSubmit: (data: { 
     name: string; 
     description?: string;
+    icon: string;
     color: string;
     defaultView: string;
   }) => Promise<void>;
@@ -52,6 +69,7 @@ interface CreateBoardModalProps {
 export function CreateBoardModal({ open, onOpenChange, onSubmit }: CreateBoardModalProps) {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [selectedIcon, setSelectedIcon] = React.useState(BOARD_ICONS[0].icon);
   const [selectedView, setSelectedView] = React.useState(BOARD_VIEWS[0].value);
   const [selectedColor, setSelectedColor] = React.useState(BOARD_COLORS[0].value);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -65,12 +83,14 @@ export function CreateBoardModal({ open, onOpenChange, onSubmit }: CreateBoardMo
       await onSubmit({
         name: name.trim(),
         description: description.trim() || undefined,
+        icon: selectedIcon,
         color: selectedColor,
         defaultView: selectedView,
       });
       // Reset form
       setName("");
       setDescription("");
+      setSelectedIcon(BOARD_ICONS[0].icon);
       setSelectedView(BOARD_VIEWS[0].value);
       setSelectedColor(BOARD_COLORS[0].value);
       onOpenChange(false);
@@ -92,7 +112,7 @@ export function CreateBoardModal({ open, onOpenChange, onSubmit }: CreateBoardMo
                 style={{ backgroundColor: `${selectedColor}20` }}
               >
                 <Icon
-                  icon="solar:clipboard-list-outline"
+                  icon={selectedIcon}
                   className="size-5"
                   style={{ color: selectedColor }}
                 />
@@ -127,6 +147,29 @@ export function CreateBoardModal({ open, onOpenChange, onSubmit }: CreateBoardMo
                 onChange={(e) => setDescription(e.target.value)}
                 rows={2}
               />
+            </div>
+
+            {/* Icon Selection */}
+            <div className="grid gap-2">
+              <Label>Icon</Label>
+              <div className="flex flex-wrap gap-2">
+                {BOARD_ICONS.map((item) => (
+                  <button
+                    key={item.icon}
+                    type="button"
+                    onClick={() => setSelectedIcon(item.icon)}
+                    className={cn(
+                      "flex size-10 items-center justify-center rounded-lg border-2 transition-all",
+                      selectedIcon === item.icon
+                        ? "border-primary bg-primary/10"
+                        : "border-transparent bg-muted hover:bg-muted/80"
+                    )}
+                    title={item.name}
+                  >
+                    <Icon icon={item.icon} className="size-5" />
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Default View Selection */}

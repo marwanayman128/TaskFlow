@@ -1,0 +1,276 @@
+{
+  "tasks": {
+    "title": "المهام",
+    "myDay": "يومي",
+    "allTasks": "جميع المهام",
+    "nextSevenDays": "الأيام السبعة القادمة",
+    "upcoming": "القادمة",
+    "overdue": "متأخرة",
+    "completed": "مكتملة",
+    "noTasks": "لا توجد مهام بعد",
+    "noTasksDescription": "أنشئ مهمتك الأولى للبدء",
+    "addTask": "إضافة مهمة",
+    "newTask": "مهمة جديدة",
+    "quickAdd": "إضافة سريعة",
+    "taskTitle": "عنوان المهمة",
+    "taskDescription": "الوصف",
+    "dueDate": "تاريخ الاستحقاق",
+    "priority": "الأولوية",
+    "status": "الحالة",
+    "assignee": "المسؤول",
+    "tags": "الوسوم",
+    "list": "القائمة",
+    "board": "اللوحة",
+    "complete": "إكمال",
+    "incomplete": "تحديد غير مكتمل",
+    "delete": "حذف",
+    "duplicate": "تكرار",
+    "moveToList": "نقل إلى قائمة",
+    "addToMyDay": "إضافة إلى يومي",
+    "removeFromMyDay": "إزالة من يومي"
+  },
+  "priorities": {
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة",
+    "none": "بدون"
+  },
+  "statuses": {
+    "todo": "للتنفيذ",
+    "inProgress": "قيد التنفيذ",
+    "completed": "مكتمل"
+  },
+  "lists": {
+    "title": "القوائم",
+    "createList": "إنشاء قائمة",
+    "editList": "تعديل القائمة",
+    "deleteList": "حذف القائمة",
+    "listName": "اسم القائمة",
+    "listColor": "اللون",
+    "listIcon": "الأيقونة",
+    "noLists": "لا توجد قوائم بعد",
+    "defaultList": "البريد الوارد"
+  },
+  "boards": {
+    "title": "اللوحات",
+    "createBoard": "إنشاء لوحة",
+    "editBoard": "تعديل اللوحة",
+    "deleteBoard": "حذف اللوحة",
+    "boardName": "اسم اللوحة",
+    "boardDescription": "الوصف",
+    "noBoards": "لا توجد لوحات بعد",
+    "addColumn": "إضافة عمود",
+    "columnName": "اسم العمود",
+    "views": {
+      "kanban": "كانبان",
+      "list": "قائمة",
+      "calendar": "تقويم",
+      "table": "جدول",
+      "gantt": "غانت"
+    }
+  },
+  "calendar": {
+    "title": "التقويم",
+    "today": "اليوم",
+    "week": "أسبوع",
+    "month": "شهر",
+    "day": "يوم",
+    "noEvents": "لا توجد أحداث"
+  },
+  "comments": {
+    "title": "التعليقات",
+    "addComment": "أضف تعليقاً",
+    "reply": "رد",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "edited": "معدل",
+    "noComments": "لا توجد تعليقات بعد",
+    "beFirstToComment": "كن أول من يعلق"
+  },
+  "activity": {
+    "title": "النشاط",
+    "noActivity": "لا يوجد نشاط بعد",
+    "created": "أنشأ هذه المهمة",
+    "completed": "أكمل هذه المهمة",
+    "updated": "حدّث",
+    "assignedTo": "أسند إلى",
+    "addedTag": "أضاف وسم",
+    "removedTag": "أزال وسم",
+    "movedToList": "نقل إلى قائمة"
+  },
+  "timeTracking": {
+    "title": "تتبع الوقت",
+    "start": "بدء المؤقت",
+    "stop": "إيقاف المؤقت",
+    "addManual": "إضافة إدخال يدوي",
+    "totalTime": "الوقت الإجمالي",
+    "noEntries": "لا توجد إدخالات وقت",
+    "duration": "المدة",
+    "hours": "ساعات",
+    "minutes": "دقائق"
+  },
+  "attachments": {
+    "title": "المرفقات",
+    "upload": "رفع ملف",
+    "dragDrop": "اسحب وأفلت الملفات أو تصفح",
+    "maxSize": "الحد الأقصى 10 ميجابايت",
+    "download": "تحميل",
+    "delete": "حذف",
+    "noAttachments": "لا توجد مرفقات"
+  },
+  "templates": {
+    "title": "القوالب",
+    "gallery": "معرض القوالب",
+    "useTemplate": "استخدام القالب",
+    "createTemplate": "إنشاء قالب",
+    "noTemplates": "لا توجد قوالب متاحة",
+    "categories": {
+      "all": "الكل",
+      "work": "العمل",
+      "personal": "شخصي",
+      "goals": "الأهداف",
+      "health": "الصحة",
+      "learning": "التعلم"
+    }
+  },
+  "recurring": {
+    "title": "تكرار",
+    "never": "أبداً",
+    "daily": "يومياً",
+    "weekly": "أسبوعياً",
+    "monthly": "شهرياً",
+    "yearly": "سنوياً",
+    "every": "كل",
+    "days": "أيام",
+    "weeks": "أسابيع",
+    "months": "شهور",
+    "years": "سنوات",
+    "on": "في",
+    "endDate": "تاريخ الانتهاء",
+    "afterOccurrences": "بعد عدد مرات",
+    "daysOfWeek": {
+      "sun": "أحد",
+      "mon": "إثنين",
+      "tue": "ثلاثاء",
+      "wed": "أربعاء",
+      "thu": "خميس",
+      "fri": "جمعة",
+      "sat": "سبت"
+    }
+  },
+  "customFields": {
+    "title": "الحقول المخصصة",
+    "addField": "إضافة حقل",
+    "fieldName": "اسم الحقل",
+    "fieldType": "نوع الحقل",
+    "required": "مطلوب",
+    "options": "الخيارات",
+    "types": {
+      "text": "نص",
+      "number": "رقم",
+      "date": "تاريخ",
+      "dropdown": "قائمة منسدلة",
+      "multiSelect": "اختيار متعدد",
+      "checkbox": "مربع اختيار",
+      "url": "رابط",
+      "email": "بريد إلكتروني",
+      "phone": "هاتف"
+    }
+  },
+  "importExport": {
+    "title": "استيراد / تصدير",
+    "export": "تصدير",
+    "import": "استيراد",
+    "format": "التنسيق",
+    "include": "تضمين",
+    "exportSuccess": "تم تصدير البيانات بنجاح",
+    "importSuccess": "تم استيراد البيانات بنجاح",
+    "selectFile": "اختر ملفاً",
+    "dragDropFile": "اسحب وأفلت أو تصفح"
+  },
+  "integrations": {
+    "title": "التكاملات",
+    "googleCalendar": "تقويم جوجل",
+    "whatsapp": "واتساب",
+    "telegram": "تليجرام",
+    "connect": "ربط",
+    "disconnect": "إلغاء الربط",
+    "connected": "متصل",
+    "comingSoon": "قريباً",
+    "syncTasks": "مزامنة المهام مع التقويم",
+    "notifications": "استلام الإشعارات"
+  },
+  "location": {
+    "title": "الموقع",
+    "remindMeWhen": "ذكرني عندما",
+    "arrive": "أصل",
+    "leave": "أغادر",
+    "search": "بحث عن موقع",
+    "useCurrentLocation": "استخدام الموقع الحالي",
+    "radius": "نطاق الكشف",
+    "noLocation": "لم يتم تحديد موقع"
+  },
+  "aiSuggestions": {
+    "title": "اقتراحات الذكاء الاصطناعي",
+    "getSuggestions": "الحصول على اقتراحات",
+    "breakdownTask": "تقسيم بالذكاء الاصطناعي",
+    "suggestPriority": "اقتراح الأولوية",
+    "suggestDueDate": "اقتراح تاريخ الاستحقاق",
+    "noSuggestions": "لا توجد اقتراحات حالياً"
+  },
+  "analytics": {
+    "title": "التحليلات",
+    "overview": "نظرة عامة",
+    "productivity": "الإنتاجية",
+    "completionRate": "معدل الإنجاز",
+    "tasksCompleted": "المهام المكتملة",
+    "inProgress": "قيد التنفيذ",
+    "overdue": "متأخرة",
+    "dailyActivity": "النشاط اليومي",
+    "streak": "يوم متتالي",
+    "avgPerDay": "المتوسط يومياً",
+    "bestDay": "أفضل يوم",
+    "onTimeDelivery": "التسليم في الوقت",
+    "focusTime": "وقت التركيز",
+    "hoursTracked": "ساعات متتبعة",
+    "tasksByList": "المهام حسب القائمة",
+    "tasksByPriority": "المهام حسب الأولوية"
+  },
+  "shortcuts": {
+    "title": "اختصارات لوحة المفاتيح",
+    "search": "بحث سريع",
+    "newTask": "إنشاء مهمة جديدة",
+    "toggleSidebar": "تبديل الشريط الجانبي",
+    "goToMyDay": "الذهاب إلى يومي",
+    "goToAllTasks": "الذهاب إلى جميع المهام",
+    "goToCalendar": "الذهاب إلى التقويم",
+    "goToBoards": "الذهاب إلى اللوحات",
+    "cycleView": "تبديل وضع العرض"
+  },
+  "gantt": {
+    "title": "مخطط غانت",
+    "week": "أسبوع",
+    "month": "شهر",
+    "quarter": "ربع سنة",
+    "today": "اليوم",
+    "noTasksWithDates": "لا توجد مهام بتواريخ للعرض"
+  },
+  "search": {
+    "placeholder": "البحث في المهام والقوائم واللوحات...",
+    "noResults": "لم يتم العثور على نتائج",
+    "recentSearches": "عمليات البحث الأخيرة",
+    "clearRecent": "مسح"
+  },
+  "filters": {
+    "title": "الفلاتر",
+    "all": "الكل",
+    "active": "نشط",
+    "completed": "مكتمل",
+    "byPriority": "حسب الأولوية",
+    "byStatus": "حسب الحالة",
+    "byTag": "حسب الوسم",
+    "byList": "حسب القائمة",
+    "byDueDate": "حسب تاريخ الاستحقاق",
+    "clearFilters": "مسح الفلاتر"
+  }
+}

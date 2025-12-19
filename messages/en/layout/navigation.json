@@ -23,6 +23,14 @@
       "title": "My Calendar",
       "description": "Calendar view"
     },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Productivity insights"
+    },
+    "gantt": {
+      "title": "Gantt Chart",
+      "description": "Timeline view"
+    },
     "settings": {
       "title": "Settings",
       "description": "App settings",
@@ -30,6 +38,10 @@
       "preferences": "Preferences",
       "integrations": "Integrations",
       "import": "Import"
+    },
+    "users": {
+      "title": "Users",
+      "description": "Manage users"
     }
   }
 }

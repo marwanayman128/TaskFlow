@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma';
 // GET /api/v1/tags/[id] - Get a specific tag
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -13,30 +13,29 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     const tag = await prisma.tag.findFirst({
       where: {
         id,
         organizationId: session.user.organizationId,
-        deletedAt: null,
       },
-      include: {
-        _count: {
-          select: { tasks: true }
-        }
-      }
     });
 
     if (!tag) {
       return NextResponse.json({ error: 'Tag not found' }, { status: 404 });
     }
 
+    // Count tasks with this tag
+    const taskCount = await prisma.taskTag.count({
+      where: { tagId: id },
+    });
+
     return NextResponse.json({
       id: tag.id,
       name: tag.name,
       color: tag.color,
-      taskCount: tag._count.tasks,
+      taskCount,
       createdAt: tag.createdAt,
       updatedAt: tag.updatedAt,
     });
@@ -52,7 +51,7 @@ export async function GET(
 // PUT /api/v1/tags/[id] - Update a tag
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -60,7 +59,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
 
     const tag = await prisma.tag.update({
@@ -68,7 +67,6 @@ export async function PUT(
       data: {
         name: body.name,
         color: body.color,
-        updatedAt: new Date(),
       },
     });
 
@@ -82,10 +80,10 @@ export async function PUT(
   }
 }
 
-// DELETE /api/v1/tags/[id] - Delete a tag
+// DELETE /api/v1/tags/[id] - Delete a tag (hard delete)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth();
@@ -93,12 +91,11 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
-    // Soft delete
-    await prisma.tag.update({
+    // Delete the tag (TaskTag entries will be cascade deleted)
+    await prisma.tag.delete({
       where: { id },
-      data: { deletedAt: new Date() },
     });
 
     return NextResponse.json({ success: true });

@@ -1,0 +1,276 @@
+{
+  "tasks": {
+    "title": "Tasks",
+    "myDay": "My Day",
+    "allTasks": "All Tasks",
+    "nextSevenDays": "Next 7 Days",
+    "upcoming": "Upcoming",
+    "overdue": "Overdue",
+    "completed": "Completed",
+    "noTasks": "No tasks yet",
+    "noTasksDescription": "Create your first task to get started",
+    "addTask": "Add Task",
+    "newTask": "New Task",
+    "quickAdd": "Quick Add",
+    "taskTitle": "Task title",
+    "taskDescription": "Description",
+    "dueDate": "Due date",
+    "priority": "Priority",
+    "status": "Status",
+    "assignee": "Assignee",
+    "tags": "Tags",
+    "list": "List",
+    "board": "Board",
+    "complete": "Complete",
+    "incomplete": "Mark incomplete",
+    "delete": "Delete",
+    "duplicate": "Duplicate",
+    "moveToList": "Move to list",
+    "addToMyDay": "Add to My Day",
+    "removeFromMyDay": "Remove from My Day"
+  },
+  "priorities": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "none": "None"
+  },
+  "statuses": {
+    "todo": "To Do",
+    "inProgress": "In Progress",
+    "completed": "Completed"
+  },
+  "lists": {
+    "title": "Lists",
+    "createList": "Create List",
+    "editList": "Edit List",
+    "deleteList": "Delete List",
+    "listName": "List name",
+    "listColor": "Color",
+    "listIcon": "Icon",
+    "noLists": "No lists yet",
+    "defaultList": "Inbox"
+  },
+  "boards": {
+    "title": "Boards",
+    "createBoard": "Create Board",
+    "editBoard": "Edit Board",
+    "deleteBoard": "Delete Board",
+    "boardName": "Board name",
+    "boardDescription": "Description",
+    "noBoards": "No boards yet",
+    "addColumn": "Add Column",
+    "columnName": "Column name",
+    "views": {
+      "kanban": "Kanban",
+      "list": "List",
+      "calendar": "Calendar",
+      "table": "Table",
+      "gantt": "Gantt"
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "today": "Today",
+    "week": "Week",
+    "month": "Month",
+    "day": "Day",
+    "noEvents": "No events"
+  },
+  "comments": {
+    "title": "Comments",
+    "addComment": "Add a comment",
+    "reply": "Reply",
+    "edit": "Edit",
+    "delete": "Delete",
+    "edited": "edited",
+    "noComments": "No comments yet",
+    "beFirstToComment": "Be the first to comment"
+  },
+  "activity": {
+    "title": "Activity",
+    "noActivity": "No activity yet",
+    "created": "created this task",
+    "completed": "completed this task",
+    "updated": "updated",
+    "assignedTo": "assigned to",
+    "addedTag": "added tag",
+    "removedTag": "removed tag",
+    "movedToList": "moved to list"
+  },
+  "timeTracking": {
+    "title": "Time Tracking",
+    "start": "Start Timer",
+    "stop": "Stop Timer",
+    "addManual": "Add Time Entry",
+    "totalTime": "Total Time",
+    "noEntries": "No time entries",
+    "duration": "Duration",
+    "hours": "hours",
+    "minutes": "minutes"
+  },
+  "attachments": {
+    "title": "Attachments",
+    "upload": "Upload File",
+    "dragDrop": "Drag & drop files or browse",
+    "maxSize": "Max 10MB",
+    "download": "Download",
+    "delete": "Delete",
+    "noAttachments": "No attachments"
+  },
+  "templates": {
+    "title": "Templates",
+    "gallery": "Template Gallery",
+    "useTemplate": "Use Template",
+    "createTemplate": "Create Template",
+    "noTemplates": "No templates available",
+    "categories": {
+      "all": "All",
+      "work": "Work",
+      "personal": "Personal",
+      "goals": "Goals",
+      "health": "Health",
+      "learning": "Learning"
+    }
+  },
+  "recurring": {
+    "title": "Repeat",
+    "never": "Never",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "every": "Every",
+    "days": "days",
+    "weeks": "weeks",
+    "months": "months",
+    "years": "years",
+    "on": "on",
+    "endDate": "End date",
+    "afterOccurrences": "After occurrences",
+    "daysOfWeek": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    }
+  },
+  "customFields": {
+    "title": "Custom Fields",
+    "addField": "Add Field",
+    "fieldName": "Field Name",
+    "fieldType": "Field Type",
+    "required": "Required",
+    "options": "Options",
+    "types": {
+      "text": "Text",
+      "number": "Number",
+      "date": "Date",
+      "dropdown": "Dropdown",
+      "multiSelect": "Multi-select",
+      "checkbox": "Checkbox",
+      "url": "URL",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  },
+  "importExport": {
+    "title": "Import / Export",
+    "export": "Export",
+    "import": "Import",
+    "format": "Format",
+    "include": "Include",
+    "exportSuccess": "Data exported successfully",
+    "importSuccess": "Data imported successfully",
+    "selectFile": "Select a file",
+    "dragDropFile": "Drag & drop or browse"
+  },
+  "integrations": {
+    "title": "Integrations",
+    "googleCalendar": "Google Calendar",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "comingSoon": "Coming Soon",
+    "syncTasks": "Sync tasks with calendar",
+    "notifications": "Receive notifications"
+  },
+  "location": {
+    "title": "Location",
+    "remindMeWhen": "Remind me when I",
+    "arrive": "Arrive",
+    "leave": "Leave",
+    "search": "Search location",
+    "useCurrentLocation": "Use current location",
+    "radius": "Detection radius",
+    "noLocation": "No location set"
+  },
+  "aiSuggestions": {
+    "title": "AI Suggestions",
+    "getSuggestions": "Get Suggestions",
+    "breakdownTask": "Break down with AI",
+    "suggestPriority": "Suggest priority",
+    "suggestDueDate": "Suggest due date",
+    "noSuggestions": "No suggestions right now"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "overview": "Overview",
+    "productivity": "Productivity",
+    "completionRate": "Completion Rate",
+    "tasksCompleted": "Tasks Completed",
+    "inProgress": "In Progress",
+    "overdue": "Overdue",
+    "dailyActivity": "Daily Activity",
+    "streak": "day streak",
+    "avgPerDay": "Avg per day",
+    "bestDay": "Best day",
+    "onTimeDelivery": "On-Time Delivery",
+    "focusTime": "Focus Time",
+    "hoursTracked": "hours tracked",
+    "tasksByList": "Tasks by List",
+    "tasksByPriority": "Tasks by Priority"
+  },
+  "shortcuts": {
+    "title": "Keyboard Shortcuts",
+    "search": "Quick search",
+    "newTask": "Create new task",
+    "toggleSidebar": "Toggle sidebar",
+    "goToMyDay": "Go to My Day",
+    "goToAllTasks": "Go to All Tasks",
+    "goToCalendar": "Go to Calendar",
+    "goToBoards": "Go to Boards",
+    "cycleView": "Cycle view mode"
+  },
+  "gantt": {
+    "title": "Gantt Chart",
+    "week": "Week",
+    "month": "Month",
+    "quarter": "Quarter",
+    "today": "Today",
+    "noTasksWithDates": "No tasks with dates to display"
+  },
+  "search": {
+    "placeholder": "Search tasks, lists, boards...",
+    "noResults": "No results found",
+    "recentSearches": "Recent Searches",
+    "clearRecent": "Clear"
+  },
+  "filters": {
+    "title": "Filters",
+    "all": "All",
+    "active": "Active",
+    "completed": "Completed",
+    "byPriority": "By Priority",
+    "byStatus": "By Status",
+    "byTag": "By Tag",
+    "byList": "By List",
+    "byDueDate": "By Due Date",
+    "clearFilters": "Clear Filters"
+  }
+}

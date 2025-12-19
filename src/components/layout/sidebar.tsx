@@ -435,7 +435,7 @@ export function Sidebar({ locale, session }: { locale: string; session: Session 
     }
   };
 
-  const handleCreateBoard = async (data: { name: string; description?: string; color: string; defaultView: string }) => {
+  const handleCreateBoard = async (data: { name: string; description?: string; icon: string; color: string; defaultView: string }) => {
     try {
       await createBoard(data);
       mutateBoards(); // Refresh the boards cache
@@ -495,8 +495,10 @@ export function Sidebar({ locale, session }: { locale: string; session: Session 
       (item.href.endsWith("/myday") || 
        item.href.includes("/tasks/next-seven-days") || 
        item.href.includes("/tasks/all") ||
-       item.href.endsWith("/calendar"))
-  ).slice(0, 4); // First 4 items
+       item.href.endsWith("/calendar") ||
+       item.href.endsWith("/analytics") ||
+       item.href.endsWith("/gantt"))
+  ).slice(0, 6); // First 6 items
 
   const settingsItem = navigationItems.find(
     (item): item is SidebarLinkEntry => 

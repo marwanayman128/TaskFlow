@@ -299,7 +299,7 @@ export function useBoard(id: string) {
 export function useCreateBoard() {
   const [isCreating, setIsCreating] = React.useState(false);
 
-  const createBoard = async (data: { name: string; description?: string; color?: string; defaultView?: string }) => {
+  const createBoard = async (data: { name: string; description?: string; icon?: string; color?: string; defaultView?: string }) => {
     setIsCreating(true);
     try {
       const res = await fetch('/api/v1/boards', {
@@ -553,4 +553,203 @@ export function useDeleteTaskMutation() {
     }
   };
   return { deleteTask, isDeleting };
+}
+
+// ============================================
+// COMMENTS HOOKS
+// ============================================
+
+export interface TaskComment {
+  id: string;
+  taskId: string;
+  userId: string;
+  parentId?: string | null;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    id: string;
+    fullName: string;
+    avatar?: string | null;
+  };
+  replies?: TaskComment[];
+}
+
+export function useTaskComments(taskId: string | null) {
+  const { data, error, isLoading, mutate } = useSWR<TaskComment[]>(
+    taskId ? `/api/v1/tasks/${taskId}/comments` : null,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+
+  return {
+    comments: data || [],
+    isLoading,
+    isError: error,
+    mutate,
+  };
+}
+
+export function useCreateComment() {
+  const [isCreating, setIsCreating] = React.useState(false);
+
+  const createComment = async (taskId: string, content: string, parentId?: string) => {
+    setIsCreating(true);
+    try {
+      const res = await fetch(`/api/v1/tasks/${taskId}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content, parentId }),
+      });
+      if (!res.ok) throw new Error('Failed to create comment');
+      return res.json();
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
+  return { createComment, isCreating };
+}
+
+// ============================================
+// ACTIVITY HOOKS
+// ============================================
+
+export interface TaskActivity {
+  id: string;
+  taskId: string;
+  userId: string;
+  action: string;
+  details?: Record<string, unknown>;
+  createdAt: string;
+  user?: {
+    id: string;
+    fullName: string;
+    avatar?: string | null;
+  };
+}
+
+export function useTaskActivity(taskId: string | null, limit: number = 50) {
+  const { data, error, isLoading, mutate } = useSWR<TaskActivity[]>(
+    taskId ? `/api/v1/tasks/${taskId}/activity?limit=${limit}` : null,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+
+  return {
+    activities: data || [],
+    isLoading,
+    isError: error,
+    mutate,
+  };
+}
+
+// ============================================
+// TIME TRACKING HOOKS
+// ============================================
+
+export interface TimeEntry {
+  id: string;
+  taskId: string;
+  userId: string;
+  description?: string | null;
+  startTime: string;
+  endTime?: string | null;
+  duration?: number | null; // in minutes
+  isBillable: boolean;
+  createdAt: string;
+  user?: {
+    id: string;
+    fullName: string;
+    avatar?: string | null;
+  };
+  task?: {
+    id: string;
+    title: string;
+  };
+}
+
+export function useTimeEntries(taskId: string | null) {
+  const { data, error, isLoading, mutate } = useSWR<{ entries: TimeEntry[]; totalTime: number }>(
+    taskId ? `/api/v1/tasks/${taskId}/time-entries` : null,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+
+  return {
+    entries: data?.entries || [],
+    totalTime: data?.totalTime || 0,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+}
+
+export function useActiveTimer() {
+  const { data, error, isLoading, mutate } = useSWR<{ timer: TimeEntry | null }>(
+    '/api/v1/time-tracking',
+    fetcher,
+    { refreshInterval: 60000 } // Refresh every minute
+  );
+
+  return {
+    activeTimer: data?.timer || null,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+}
+
+export function useTimeTracking() {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const startTimer = async (taskId: string, description?: string) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`/api/v1/tasks/${taskId}/time-entries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ description }),
+      });
+      if (!res.ok) throw new Error('Failed to start timer');
+      return res.json();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const stopTimer = async (entryId: string) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch('/api/v1/time-tracking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ entryId }),
+      });
+      if (!res.ok) throw new Error('Failed to stop timer');
+      return res.json();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addManualEntry = async (
+    taskId: string,
+    data: { description?: string; startTime: string; endTime: string; isBillable?: boolean }
+  ) => {
+    setIsLoading(true);
+    try {
+      const res = await fetch(`/api/v1/tasks/${taskId}/time-entries`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Failed to add time entry');
+      return res.json();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { startTimer, stopTimer, addManualEntry, isLoading };
 }

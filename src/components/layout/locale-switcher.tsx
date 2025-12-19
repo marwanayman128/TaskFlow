@@ -4,6 +4,7 @@ import * as React from "react";
 import { Languages, ChevronDown } from "lucide-react";
 import { useLocale } from "@/hooks/use-locale";
 import { Button } from "@/components/ui/button";
+import { ENABLE_I18N } from "@/lib/config";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,6 +66,12 @@ function FlagIcon({ code }: { code: LocaleKey }) {
 export function LocaleSwitcher({ variant = "icon" }: LocaleSwitcherProps) {
   const { locale, changeLocale, isPending } = useLocale();
   const activeLocale = (localeMeta[locale as LocaleKey] ? locale : "en") as LocaleKey;
+
+  // Hide the language switcher if i18n is disabled
+  if (!ENABLE_I18N) {
+    return null;
+  }
+
 
   const triggerClasses = (() => {
     switch (variant) {

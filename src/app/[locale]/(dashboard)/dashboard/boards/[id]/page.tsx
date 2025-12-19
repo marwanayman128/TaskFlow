@@ -28,6 +28,7 @@ import { TaskCard } from '@/components/features/tasks/task-card';
 import { TaskDetailDialog } from '@/components/features/tasks/task-detail-dialog';
 import { QuickAddTask } from '@/components/features/tasks/quick-add-task';
 import { KanbanBoard, KanbanColumn } from '@/components/features/tasks/kanban-board';
+import { DragToCreateCalendar } from '@/components/features/tasks/drag-to-create-calendar';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -298,11 +299,15 @@ export default function BoardDetailPage() {
   const [localTasks, setLocalTasks] = React.useState<Task[]>([]);
   const [currentView, setCurrentView] = React.useState<BoardView>('KANBAN');
   const [selectedTask, setSelectedTask] = React.useState<Task | null>(null);
+  const [quickAddDate, setQuickAddDate] = React.useState<Date | null>(null);
 
   // Sync tasks
   React.useEffect(() => {
     if (tasks) {
-      setLocalTasks(tasks);
+      setLocalTasks(prev => {
+        if (JSON.stringify(prev) === JSON.stringify(tasks)) return prev;
+        return tasks;
+      });
     }
   }, [tasks]);
 
@@ -313,15 +318,14 @@ export default function BoardDetailPage() {
     }
   }, [board]);
 
-  // Sync selectedTask with updated tasks data (to show newly added subtasks)
   React.useEffect(() => {
     if (selectedTask && tasks) {
       const updatedTask = tasks.find((t: Task) => t.id === selectedTask.id);
-      if (updatedTask) {
+      if (updatedTask && JSON.stringify(updatedTask) !== JSON.stringify(selectedTask)) {
         setSelectedTask(updatedTask);
       }
     }
-  }, [tasks]);
+  }, [tasks, selectedTask]);
   
   // Handlers
   const handleAddTask = async (data?: any) => {
@@ -332,6 +336,7 @@ export default function BoardDetailPage() {
         dueDate: data?.dueDate,
         status: data?.status || 'TODO',
         priority: data?.priority || 'NONE',
+        parentTaskId: data?.parentTaskId || undefined,
       });
       mutate();
       toast.success('Task created');
@@ -498,7 +503,7 @@ export default function BoardDetailPage() {
             onArchive={handleArchive}
             onAddToMyDay={handleAddToMyDay}
             availableTags={tags}
-            className="flex-1 mt-0 h-full"
+            className="flex-1 min-h-0 mt-4 h-auto"
           />
         );
       
@@ -518,10 +523,23 @@ export default function BoardDetailPage() {
 
       case 'CALENDAR':
         return (
-          <BoardCalendarView
-            tasks={localTasks || []}
-            onTaskClick={setSelectedTask}
-            onAddTask={(date) => handleAddTask({ title: 'New Task', dueDate: date.toISOString() })}
+          <DragToCreateCalendar
+            currentDate={new Date()}
+            events={(localTasks || []).map(task => ({
+              id: task.id,
+              title: task.title,
+              start: task.dueDate ? new Date(task.dueDate) : new Date(),
+              end: task.dueDate 
+                ? new Date(new Date(task.dueDate).getTime() + 60 * 60 * 1000) 
+                : new Date(Date.now() + 60 * 60 * 1000),
+              color: task.listColor || '#3b82f6',
+              task,
+            }))}
+            onEventClick={(event) => setSelectedTask(event.task || null)}
+            onCreateEvent={(start, end) => {
+              // Open quick add modal with the selected start time
+              setQuickAddDate(start);
+            }}
           />
         );
 

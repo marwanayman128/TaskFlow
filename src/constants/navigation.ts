@@ -81,6 +81,19 @@ export const navigationItems: SidebarEntry[] = [
     href: "/dashboard/calendar",
     icon: "solar:calendar-outline",
   },
+  {
+    type: "link",
+    title: "navigation.items.analytics.title",
+    href: "/dashboard/analytics",
+    icon: "solar:chart-2-outline",
+  },
+  {
+    type: "link",
+    title: "navigation.items.gantt.title",
+    href: "/dashboard/gantt",
+    icon: "solar:align-left-outline",
+    badge: "Pro",
+  },
 
   // ===================================
   // MY LISTS (User-created Task Lists)

@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  serverExternalPackages: ['whatsapp-web.js', 'puppeteer'],
   images: {
     remotePatterns: [
       {
